@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "dev_encoder.h": "c",
+        "dev_imu.h": "c",
+        "dev_all.h": "c",
+        "state_var.h": "c",
+        "config_mec.h": "c",
+        "lqr.h": "c",
+        "straight_leg_model.h": "c",
+        "robot_debug.h": "c",
+        "control_task.h": "c",
+        "dev_motor.h": "c",
+        "pid.h": "c"
+    }
+}

@@ -1,0 +1,377 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+  basicTimeStep 10
+}
+Viewpoint {
+  orientation 0.24956410758659406 0.24906375207334777 -0.9357804248901839 1.6391244461647245
+  position 0.03785240992845886 0.9094748382324835 0.44041079862511245
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Robot {
+  translation 0 0.36 0.2
+  rotation 1 0 0 3.141592653589793
+  children [
+    Gyro {
+      rotation -0.7071072811865 0.7071062811861024 4.432711762700992e-07 -3.1415853071795863
+      name "My_Gyro"
+    }
+    Accelerometer {
+      rotation -0.7071072811858331 0.7071062811854354 1.443270573925979e-06 3.14159
+      name "My_Accelerometer"
+    }
+    InertialUnit {
+      rotation -0.7071072811858331 0.7071062811854354 1.443270573925979e-06 3.14159
+      name "My_Imu"
+    }
+    DEF 右主动 Pose {
+      translation 0.08 0.00095498 -0.048
+      children [
+        DEF 右主动 HingeJoint {
+          jointParameters HingeJointParameters {
+          }
+          device [
+            PositionSensor {
+              name "R_Sd_Pos"
+            }
+            RotationalMotor {
+              name "R_Sd_Motor"
+            }
+          ]
+          endPoint Solid {
+            translation 2.8197286922049252e-08 -0.00010646280194010881 -0.00010316753221588165
+            rotation -7.616386197062828e-07 0.5575983494150452 -0.8301108845985801 2.2843047554428465e-06
+            children [
+              DEF 右大腿 Pose {
+                translation 0.0078 0.10877 0.03029
+                children [
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                    }
+                    endPoint Solid {
+                      translation -0.009999999999999993 0 0
+                      rotation 1 0 0 0
+                      children [
+                        Pose {
+                          translation 0.045 -0.10853 0.03685
+                          rotation 0 0 1 1.5707996938995747
+                          children [
+                            HingeJoint {
+                              jointParameters HingeJointParameters {
+                                axis 0 1 0
+                              }
+                              device [
+                                PositionSensor {
+                                  name "R_W_Pos"
+                                }
+                                RotationalMotor {
+                                  name "R_W_Motor"
+                                  maxTorque 500
+                                }
+                              ]
+                              endPoint Solid {
+                                rotation 0 1 0 0
+                                children [
+                                  DEF right_wheel Shape {
+                                    appearance PBRAppearance {
+                                      baseColor 0 0 0
+                                    }
+                                    geometry Mesh {
+                                      url [
+                                        "../stl/轮毂.STL"
+                                      ]
+                                    }
+                                  }
+                                ]
+                                boundingObject USE right_wheel
+                                physics Physics {
+                                  density -1
+                                  mass 0.5
+                                }
+                              }
+                            }
+                          ]
+                        }
+                        DEF 右大腿 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0.447059 0.741176
+                          }
+                          geometry Mesh {
+                            url [
+                              "../stl/右大腿.STL"
+                            ]
+                          }
+                        }
+                      ]
+                      name "右大腿"
+                      boundingObject USE 右大腿
+                      physics Physics {
+                      }
+                    }
+                  }
+                ]
+              }
+              DEF 右主动 Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0.447059 0.741176
+                }
+                geometry Mesh {
+                  url [
+                    "../stl/右主动腿.STL"
+                  ]
+                }
+              }
+            ]
+            name "右主动"
+            boundingObject USE 右主动
+            physics Physics {
+            }
+          }
+        }
+      ]
+    }
+    DEF 右小腿 Pose {
+      children [
+        Pose {
+          translation 0.08935 0.05664 -0.08125
+          children [
+            HingeJoint {
+              jointParameters HingeJointParameters {
+              }
+              endPoint Solid {
+                translation -5.671632052894893e-10 0.000429396300043359 0.00026291972308277304
+                rotation -3.736079921343927e-07 0.6690003801567562 -0.7432620610188416 1.3493575361576062e-06
+                children [
+                  DEF right_overlap Pose {
+                    translation 0 0.08549 0.05189
+                    children [
+                      DEF left_overlap HingeJoint {
+                        jointParameters HingeJointParameters {
+                        }
+                        endPoint SolidReference {
+                          solidName "右大腿"
+                        }
+                      }
+                    ]
+                  }
+                  DEF 右小腿 Shape {
+                    appearance PBRAppearance {
+                      baseColor 0 0.447059 0.741176
+                    }
+                    geometry Mesh {
+                      url [
+                        "../stl/右小腿.STL"
+                      ]
+                    }
+                  }
+                ]
+                name "solid(1)"
+                boundingObject USE 右小腿
+                physics Physics {
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+    DEF 左小腿 Pose {
+      children [
+        Pose {
+          translation -0.0845 0.05664 -0.08125
+          children [
+            HingeJoint {
+              jointParameters HingeJointParameters {
+              }
+              endPoint Solid {
+                translation 5.575109569833092e-08 0.00042902736794729504 0.00026289726804804345
+                rotation -4.950149725803301e-07 -0.48232180587670787 0.8759941070438696 1.9474398198968392e-06
+                children [
+                  DEF left_overlap Pose {
+                    translation 0 0.08549 0.05189
+                    children [
+                      DEF left_overlap HingeJoint {
+                        jointParameters HingeJointParameters {
+                        }
+                        endPoint SolidReference {
+                          solidName "左大腿"
+                        }
+                      }
+                    ]
+                  }
+                  DEF 左小腿 Shape {
+                    appearance PBRAppearance {
+                      baseColor 0 0.447059 0.741176
+                    }
+                    geometry Mesh {
+                      url [
+                        "../stl/左小腿.STL"
+                      ]
+                    }
+                  }
+                ]
+                boundingObject USE 左小腿
+                physics Physics {
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+    DEF 左主动 Pose {
+      translation -0.075 0.00095498 -0.048
+      children [
+        DEF 左主动 HingeJoint {
+          jointParameters HingeJointParameters {
+          }
+          device [
+            PositionSensor {
+              name "L_Sd_Pos"
+            }
+            RotationalMotor {
+              name "L_Sd_Motor"
+            }
+          ]
+          endPoint Solid {
+            translation -5.526254159837761e-08 -0.00036850232820300415 -0.0003205844590884526
+            rotation -5.456230809103134e-07 -0.6795744547390299 0.7336065433635746 1.7938423605695596e-06
+            children [
+              DEF 左大腿 Pose {
+                translation 0.002 0.10877 0.03029
+                children [
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                    }
+                    endPoint Solid {
+                      rotation 1 0 0 0
+                      children [
+                        DEF left_wheel Pose {
+                          translation -0.045 -0.108526 0.0368549
+                          rotation 0 0 1 -1.5708003061004252
+                          children [
+                            HingeJoint {
+                              jointParameters HingeJointParameters {
+                                axis 0 1 0
+                              }
+                              device [
+                                PositionSensor {
+                                  name "L_W_Pos"
+                                }
+                                RotationalMotor {
+                                  name "L_W_Motor"
+                                  maxTorque 500
+                                }
+                              ]
+                              endPoint Solid {
+                                rotation 0 1 0 0
+                                children [
+                                  DEF right_wheel Shape {
+                                    appearance PBRAppearance {
+                                      baseColor 0 0 0
+                                    }
+                                    geometry Mesh {
+                                      url [
+                                        "../stl/轮毂.STL"
+                                      ]
+                                    }
+                                  }
+                                ]
+                                boundingObject USE right_wheel
+                                physics Physics {
+                                  density -1
+                                  mass 0.5
+                                }
+                              }
+                            }
+                          ]
+                        }
+                        DEF 左大腿 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0.447059 0.741176
+                          }
+                          geometry Mesh {
+                            url [
+                              "../stl/左大腿.STL"
+                            ]
+                          }
+                        }
+                      ]
+                      name "左大腿"
+                      boundingObject USE 左大腿
+                      physics Physics {
+                      }
+                    }
+                  }
+                ]
+              }
+              DEF 左主动 Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0.447059 0.741176
+                }
+                geometry Mesh {
+                  url [
+                    "../stl/左主动腿.STL"
+                  ]
+                }
+              }
+            ]
+            name "左主动"
+            boundingObject USE 左主动
+            physics Physics {
+            }
+          }
+        }
+      ]
+    }
+    DEF Base Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../stl/base.STL"
+        ]
+      }
+    }
+  ]
+  boundingObject USE Base
+  physics Physics {
+    density -1
+    mass 3
+  }
+  recognitionColors [
+    0 0 0
+  ]
+  controller "my_controller"
+}
+RectangleArena {
+  translation 0 0 0.14
+  floorSize 10 10
+}
+Solid {
+  translation 0 0.65 0.13
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+        }
+      }
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  boundingObject Box {
+    size 0.1 0.1 0.1
+  }
+}
