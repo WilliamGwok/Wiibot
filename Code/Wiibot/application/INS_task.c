@@ -22,8 +22,11 @@
   */
 
 #include "INS_task.h"
+#include "bsp_delay.h"
 
-
+uint32_t starttick = 0;
+uint32_t endtick = 0;
+uint32_t deltatick = 0;
 #define IMU_temp_PWM(pwm)  imu_pwm_set(pwm)                    //pwm给定
 
 
@@ -141,6 +144,8 @@ void INS_task(void const *pvParameters)
 
     while (1)
     {
+			starttick = micros();
+			
         //wait spi DMA tansmit done
         //等待SPI DMA传输
         while (ulTaskNotifyTake(pdTRUE, portMAX_DELAY) != pdPASS)
@@ -170,6 +175,10 @@ void INS_task(void const *pvParameters)
 
         AHRS_update(INS_quat, 0.001f, bmi088_real_data.gyro, bmi088_real_data.accel, ist8310_real_data.mag);
         get_angle(INS_quat, INS_angle + INS_YAW_ADDRESS_OFFSET, INS_angle + INS_PITCH_ADDRESS_OFFSET, INS_angle + INS_ROLL_ADDRESS_OFFSET);
+				
+				endtick = micros();
+				
+				deltatick = endtick - starttick;
 
 
     }

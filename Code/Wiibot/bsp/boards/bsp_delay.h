@@ -5,5 +5,7 @@
 extern void delay_init(void);
 extern void delay_us(uint32_t us);
 extern void delay_ms(uint32_t ms);
+
+uint32_t micros(void);
 #endif
 

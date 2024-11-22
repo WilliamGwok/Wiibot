@@ -58,3 +58,4 @@ ins_task\ins_task.o: ../components/devices/ist8310driver.h
 ins_task\ins_task.o: ../components/controller/pid.h
 ins_task\ins_task.o: ../components/algorithm/MahonyAHRS.h
 ins_task\ins_task.o: D:\MDK\ARM\ARMCC\Bin\..\include\math.h
+ins_task\ins_task.o: ../bsp/boards/bsp_delay.h

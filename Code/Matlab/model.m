@@ -144,11 +144,25 @@ r = rank(Control);
 disp(r);
 
 
-Q = double(diag([1 1 1 1 1 1]));
-R = double(diag([1 1]));
+Q = double(diag([80 1 30 1 10 1]));
+R = double(diag([1.5 1.5]));
 sys = ss(A_b, B_b, C_a, D_a);
-K = lqr(sys, Q, R)
+K = lqr(sys, Q, R);
 
+
+K_real = K;
+disp('实际K >>')
+X1 = sprintf('  %f, %f, %f, %f, %f, %f, %f, %f, %f, %f', K_real(1,1), K_real(1,2), K_real(1,3), K_real(1,4), K_real(1,5), K_real(1,6));
+X2 = sprintf('  %f, %f, %f, %f, %f, %f, %f, %f, %f, %f', K_real(2,1), K_real(2,2), K_real(2,3), K_real(2,4), K_real(2,5), K_real(2,6));
+
+disp('.wheell_K =')
+disp('{')
+disp(X1)
+disp('},')
+disp('.wheelr_K =')
+disp('{')
+disp(X2)
+disp('},')
 
 
 

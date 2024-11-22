@@ -74,7 +74,7 @@
 "ins_task\my_robot.o"
 "ins_task\my_joint.o"
 "ins_task\lqr.o"
---strict --scatter "ins_task\ins_task.sct"
+--library_type=microlib --strict --scatter "ins_task\ins_task.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "ins_task.map" -o ins_task\ins_task.axf

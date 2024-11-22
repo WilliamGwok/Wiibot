@@ -2,12 +2,15 @@
 #include "remote.h"
 #include "my_robot.h"
 
+
 void my_control(void const * argument)
 {
   /* USER CODE BEGIN my_control */
   /* Infinite loop */
   for(;;)
   {
+//		micros();
+		
 		My_Wheel_Heartbeat();
 		
 		My_Sd_HeartBeat();
