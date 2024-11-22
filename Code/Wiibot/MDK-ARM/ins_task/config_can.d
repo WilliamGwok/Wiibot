@@ -34,6 +34,7 @@ ins_task\config_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.
 ins_task\config_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 ins_task\config_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 ins_task\config_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+ins_task\config_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 ins_task\config_can.o: ../application/Device/wheel_motor.h
 ins_task\config_can.o: ../application/Pack/motor.h
 ins_task\config_can.o: ../application/Pack/motor_def.h

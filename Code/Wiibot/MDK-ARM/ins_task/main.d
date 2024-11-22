@@ -34,6 +34,7 @@ ins_task\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 ins_task\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 ins_task\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 ins_task\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+ins_task\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 ins_task\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 ins_task\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 ins_task\main.o: ../Inc/FreeRTOSConfig.h
@@ -53,6 +54,7 @@ ins_task\main.o: ../Inc/dma.h
 ins_task\main.o: ../Inc/i2c.h
 ins_task\main.o: ../Inc/spi.h
 ins_task\main.o: ../Inc/tim.h
+ins_task\main.o: ../Inc/usart.h
 ins_task\main.o: ../Inc/gpio.h
 ins_task\main.o: ../bsp/boards/bsp_delay.h
 ins_task\main.o: ../application/struct_typedef.h
@@ -68,3 +70,4 @@ ins_task\main.o: ../application/Config/config.h
 ins_task\main.o: ../application/Config/config_can.h
 ins_task\main.o: D:\MDK\ARM\ARMCC\Bin\..\include\string.h
 ins_task\main.o: ../application/Pack/math_support.h
+ins_task\main.o: ../application/Driver/drv_uart.h

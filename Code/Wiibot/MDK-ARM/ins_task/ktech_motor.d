@@ -34,6 +34,7 @@ ins_task\ktech_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex
 ins_task\ktech_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 ins_task\ktech_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 ins_task\ktech_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+ins_task\ktech_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 ins_task\ktech_motor.o: ../application/Config/config.h
 ins_task\ktech_motor.o: ../application/Config/config_can.h
 ins_task\ktech_motor.o: ../application/Device/wheel_motor.h

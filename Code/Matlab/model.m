@@ -144,7 +144,7 @@ r = rank(Control);
 disp(r);
 
 
-Q = double(diag([50 1 600 1 5 1]));
+Q = double(diag([1 1 1 1 1 1]));
 R = double(diag([1 1]));
 sys = ss(A_b, B_b, C_a, D_a);
 K = lqr(sys, Q, R)

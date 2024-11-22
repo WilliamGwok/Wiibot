@@ -43,6 +43,7 @@ ins_task\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 ins_task\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 ins_task\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 ins_task\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+ins_task\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 ins_task\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 ins_task\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 ins_task\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
@@ -50,4 +51,12 @@ ins_task\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 ins_task\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 ins_task\freertos.o: ../application/INS_task.h
 ins_task\freertos.o: ../application/struct_typedef.h
+ins_task\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+ins_task\freertos.o: ../bsp/boards/bsp_imu_pwm.h
+ins_task\freertos.o: ../bsp/boards/bsp_spi.h
+ins_task\freertos.o: ../components/devices/bmi088driver.h
+ins_task\freertos.o: ../components/devices/ist8310driver.h
+ins_task\freertos.o: ../components/controller/pid.h
+ins_task\freertos.o: ../components/algorithm/MahonyAHRS.h
+ins_task\freertos.o: D:\MDK\ARM\ARMCC\Bin\..\include\math.h
 ins_task\freertos.o: ../application/led_flow_task.h

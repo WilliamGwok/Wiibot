@@ -1,6 +1,6 @@
 #include "my_task.h"
-
-
+#include "remote.h"
+#include "my_robot.h"
 
 void my_control(void const * argument)
 {
@@ -12,7 +12,11 @@ void my_control(void const * argument)
 		
 		My_Sd_HeartBeat();
 		
-		My_Sd_Sleep();
+		My_Robot_Control();
+		
+//		My_Sd_Sleep();
+		
+		rc_heart_beat(&rc);
 		
     osDelay(1);
   }

@@ -25,6 +25,7 @@
 #include "i2c.h"
 #include "spi.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -32,6 +33,7 @@
 #include "bsp_delay.h"
 #include "drv_can.h"
 #include "dev_all.h"
+#include "drv_uart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -101,9 +103,13 @@ int main(void)
   MX_I2C3_Init();
   MX_TIM10_Init();
   MX_CAN1_Init();
+  MX_USART1_UART_Init();
+  MX_USART3_UART_Init();
+  MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
   delay_init();
 	CAN1_Init();
+	USART3_Init();
 	My_Device_Init();
   /* USER CODE END 2 */
 

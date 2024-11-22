@@ -24,7 +24,18 @@
 #ifndef INS_Task_H
 #define INS_Task_H
 #include "struct_typedef.h"
+#include "main.h"
 
+#include "cmsis_os.h"
+
+#include "bsp_imu_pwm.h"
+#include "bsp_spi.h"
+#include "bmi088driver.h"
+#include "ist8310driver.h"
+#include "pid.h"
+
+#include "MahonyAHRS.h"
+#include "math.h"
 
 #define SPI_DMA_GYRO_LENGHT       8
 #define SPI_DMA_ACCEL_LENGHT      9
@@ -176,5 +187,8 @@ extern const fp32 *get_accel_data_point(void);
   * @retval         INS_magµÄÖ¸Õë
   */
 extern const fp32 *get_mag_data_point(void);
+
+extern bmi088_real_data_t bmi088_real_data;
+extern fp32 INS_angle[3];
 
 #endif

@@ -34,6 +34,7 @@ ins_task\my_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 ins_task\my_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 ins_task\my_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 ins_task\my_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+ins_task\my_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 ins_task\my_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 ins_task\my_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 ins_task\my_task.o: ../Inc/FreeRTOSConfig.h
@@ -60,3 +61,17 @@ ins_task\my_task.o: ../application/Config/config_can.h
 ins_task\my_task.o: ../application/Driver/drv_can.h
 ins_task\my_task.o: D:\MDK\ARM\ARMCC\Bin\..\include\string.h
 ins_task\my_task.o: ../application/Pack/math_support.h
+ins_task\my_task.o: ../application/Device/remote.h
+ins_task\my_task.o: ../Inc/main.h
+ins_task\my_task.o: ../application/Module/my_robot.h
+ins_task\my_task.o: ../application/Module/my_posture.h
+ins_task\my_task.o: ../application/INS_task.h
+ins_task\my_task.o: ../application/struct_typedef.h
+ins_task\my_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+ins_task\my_task.o: ../bsp/boards/bsp_imu_pwm.h
+ins_task\my_task.o: ../bsp/boards/bsp_spi.h
+ins_task\my_task.o: ../components/devices/bmi088driver.h
+ins_task\my_task.o: ../components/devices/ist8310driver.h
+ins_task\my_task.o: ../components/controller/pid.h
+ins_task\my_task.o: ../components/algorithm/MahonyAHRS.h
+ins_task\my_task.o: D:\MDK\ARM\ARMCC\Bin\..\include\math.h
