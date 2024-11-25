@@ -44,3 +44,5 @@ c_balance\dev_all.o: ../Application/Config/config_can.h
 c_balance\dev_all.o: ../Application/Driver/drv_can.h
 c_balance\dev_all.o: D:\MDK\ARM\ARMCC\Bin\..\include\string.h
 c_balance\dev_all.o: ../Application/Pack/math_support.h
+c_balance\dev_all.o: ..\Application\Device\remote.h
+c_balance\dev_all.o: ../Core/Inc/main.h

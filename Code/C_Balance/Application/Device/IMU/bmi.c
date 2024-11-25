@@ -57,7 +57,7 @@ void Gyro2World(float q0,float q1,float q2,float q3,float x,float y,float z,floa
     @halfT
         解算周期的一半，比如1ms解算1次则halfT为0.0005f
 */
-float Kp = 0.1;//4
+float bmi_Kp = 0.1;//4
 float norm;
 float halfT = 0.0005f;
 float vx, vy, vz;
@@ -129,9 +129,9 @@ uint8_t BMI_Get_EulerAngle(float *pitch,float *roll,float *yaw,\
 		ey = (az*vx - ax*vz) ;//切线方向加速度
 		ez = (ax*vy - ay*vx) ;
 		
-		gx = gx + Kp*ex;
-		gy = gy + Kp*ey;
-		gz = gz + Kp*ez;
+		gx = gx + bmi_Kp*ex;
+		gy = gy + bmi_Kp*ey;
+		gz = gz + bmi_Kp*ez;
 	}
 	
 	q0temp=q0;

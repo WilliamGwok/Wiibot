@@ -48,5 +48,7 @@ uint8_t BMI_Get_EulerAngle(float *pitch,float *roll,float *yaw,\
 													 float *aax,float *aay,float *aaz);
 //不带_的为涉及加速度计的，带_的为不涉及加速度计的，用于差分计算速度
 													 
+extern float bmi_Kp;
+													 
 void Gyro2World(float q0,float q1,float q2,float q3,float x,float y,float z,float *ax,float *ay,float *az);
 #endif

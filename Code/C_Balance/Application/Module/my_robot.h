@@ -27,6 +27,21 @@ typedef struct Straight_Leg_Model_struct_t
 
 }Straight_Leg_Model_t;
 
+typedef struct Robot_Remote_struct_t
+{
+	int16_t ch0;
+	
+	
+}Robot_Remote_t;
+
+typedef struct Robot_struct_t
+{
+	bool imu_adapt_flag;
+	
+	uint16_t imu_adapt_cnt;
+}Robot_t;
+
 void My_Robot_Control(void);
+void My_Robot_Imu_Kp_Adapt(void);
 
 #endif

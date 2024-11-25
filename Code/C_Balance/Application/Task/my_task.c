@@ -4,6 +4,9 @@
 #include "drv_haltick.h"
 #include "imu_pwm.h"
 #include "my_robot.h"
+#include "sd_motor.h"
+#include "wheel_motor.h"
+#include "remote.h"
 
 //extern IWDG_HandleTypeDef hiwdg;
 
@@ -40,6 +43,12 @@ void Task_H2(void const * argument)
 		Imu_PWM_Set(imu.base_info->temp);
 		
 		task_err_m =  micros() - task_this_m ;
+		
+		My_Sd_HeartBeat();
+		
+		My_Wheel_Heartbeat();
+		
+		rc_heart_beat(&rc);
 		
     osDelay(1);
   }

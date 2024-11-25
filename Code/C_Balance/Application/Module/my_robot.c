@@ -2,14 +2,24 @@
 #include "config_mec.h"
 #include "lqr.h"
 #include "my_state_var.h"
+#include "bmi.h"
 
 void My_Model_Output_Cal(void);
 void My_Wheel_Send_Torque(float r_tor, float l_tor);
 
 Straight_Leg_Model_t My_Straight_Leg_Model;
 
+Robot_t My_Robot = 
+{
+	.imu_adapt_cnt = 0,
+	
+	.imu_adapt_flag = false,
+};
+
 void My_Robot_Update(void)
 {
+	My_Robot_Imu_Kp_Adapt();
+	
 	My_Posture_Update();
 		
 	My_State_Var_Update();
@@ -31,10 +41,33 @@ void My_Robot_Control(void)
 
 
 
-
-
-
-
+void My_Robot_Imu_Kp_Adapt(void)
+{
+	if(My_Robot.imu_adapt_flag == false)
+	{
+		My_Robot.imu_adapt_cnt++;
+		
+		bmi_Kp = 10.f;
+		
+		if(My_Robot.imu_adapt_cnt >= 1000)
+		{
+			My_Robot.imu_adapt_flag = true;
+		}
+	}
+	else
+	{
+		bmi_Kp = 0.1f;
+	}
+}
+void My_Robot_RC_Value_Filt(void)
+{
+	
+}
+//chi
+void My_Robot_Distance_Target_Process(void)
+{
+	
+}
 
 
 /*........................................LQR¿ØÖÆÆ÷²¿·Öbegin........................................*/
@@ -46,7 +79,7 @@ void My_Model_Output_Cal(void)
   K_Matrix_t *K = &My_K_Matrix;
 
 	/* ×óÇı¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
-	My_Straight_Leg_Model.l_s_part = K->wheell_K[0] * constrain(My_State_Var.s, -0.25f, 0.25f) + K->wheell_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
+	My_Straight_Leg_Model.l_s_part = K->wheell_K[0] * constrain(My_State_Var.s, -0.1f, 0.1f) + K->wheell_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
 	
 	My_Straight_Leg_Model.l_theta_part = K->wheell_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) + K->wheell_K[3] * My_State_Var.thetabd1;
 	
@@ -55,7 +88,7 @@ void My_Model_Output_Cal(void)
   My_Straight_Leg_Model.L_Tw = -( My_Straight_Leg_Model.l_s_part + My_Straight_Leg_Model.l_theta_part + My_Straight_Leg_Model.l_phi_part );
 	
 	/* ÓÒÇı¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
-	My_Straight_Leg_Model.r_s_part = K->wheelr_K[0] * constrain(My_State_Var.s, -0.25f, 0.25f) + K->wheelr_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
+	My_Straight_Leg_Model.r_s_part = K->wheelr_K[0] * constrain(My_State_Var.s, -0.1f, 0.1f) + K->wheelr_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
 	
 	My_Straight_Leg_Model.r_theta_part = K->wheelr_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) + K->wheelr_K[3] * My_State_Var.thetabd1;
 	

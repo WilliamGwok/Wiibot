@@ -120,7 +120,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>%</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -204,6 +203,11 @@
           <count>9</count>
           <WinNumber>1</WinNumber>
           <ItemText>Kp,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>rc,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
