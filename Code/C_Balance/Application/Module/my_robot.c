@@ -3,17 +3,26 @@
 #include "lqr.h"
 #include "my_state_var.h"
 #include "bmi.h"
+#include "remote.h"
 
 void My_Model_Output_Cal(void);
 void My_Wheel_Send_Torque(float r_tor, float l_tor);
 
 Straight_Leg_Model_t My_Straight_Leg_Model;
 
+Robot_Remote_t My_Robot_Remote;
+
+Robot_Target_t My_Robot_Target;
+
 Robot_t My_Robot = 
 {
 	.imu_adapt_cnt = 0,
 	
 	.imu_adapt_flag = false,
+		
+	.remote = &My_Robot_Remote,
+	
+	.target = &My_Robot_Target,
 };
 
 void My_Robot_Update(void)
@@ -23,6 +32,10 @@ void My_Robot_Update(void)
 	My_Posture_Update();
 		
 	My_State_Var_Update();
+	
+	My_Robot_RC_Value_Filt();
+	
+	My_Robot_Distance_Target_Process();
 }
 
 void My_Robot_Output_Cal(void)
@@ -59,14 +72,53 @@ void My_Robot_Imu_Kp_Adapt(void)
 		bmi_Kp = 0.1f;
 	}
 }
+
+
 void My_Robot_RC_Value_Filt(void)
 {
+	if(abs(rc.base_info->ch0) <= STICK_DRIFT_THRESHOLD)
+	{
+		My_Robot.remote->ch0 = 0;
+	}
+	else
+	{
+		My_Robot.remote->ch0 = rc.base_info->ch0;
+	}
 	
+	if(abs(rc.base_info->ch1) <= STICK_DRIFT_THRESHOLD)
+	{
+		My_Robot.remote->ch1 = 0;
+	}
+	else
+	{
+		My_Robot.remote->ch1 = rc.base_info->ch1;
+	}
+	
+	if(abs(rc.base_info->ch2) <= STICK_DRIFT_THRESHOLD)
+	{
+		My_Robot.remote->ch2 = 0;
+	}
+	else
+	{
+		My_Robot.remote->ch2 = rc.base_info->ch2;
+	}
+	
+	if(abs(rc.base_info->ch3) <= STICK_DRIFT_THRESHOLD)
+	{
+		My_Robot.remote->ch3 = 0;
+	}
+	else
+	{
+		My_Robot.remote->ch3 = rc.base_info->ch3;
+	}
 }
-//chi
+
+//ch1 10~500 0.25m/s
 void My_Robot_Distance_Target_Process(void)
 {
+	My_Robot.target->velocity = ((float)My_Robot.remote->ch1 / MAX_CHANNEL) * MAX_VELOCITY;
 	
+	My_Robot.target->distance += My_Robot.target->velocity * TIME_BASE;
 }
 
 
@@ -79,22 +131,25 @@ void My_Model_Output_Cal(void)
   K_Matrix_t *K = &My_K_Matrix;
 
 	/* ×óÇý¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
-	My_Straight_Leg_Model.l_s_part = K->wheell_K[0] * constrain(My_State_Var.s, -0.1f, 0.1f) + K->wheell_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
+	My_Straight_Leg_Model.l_s_part = K->wheell_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.1f, 0.1f) + K->wheell_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
 	
 	My_Straight_Leg_Model.l_theta_part = K->wheell_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) + K->wheell_K[3] * My_State_Var.thetabd1;
 	
-	My_Straight_Leg_Model.l_phi_part = -(K->wheell_K[4] * My_Yaw_Zero_Point_Process(My_State_Var.phi) + K->wheell_K[5] * My_State_Var.phid1);
+	My_Straight_Leg_Model.l_phi_part = -(K->wheell_K[4] * My_Yaw_Zero_Point_Process(My_State_Var.phi - My_Robot.target->spin_rad) + K->wheell_K[5] * My_State_Var.phid1);
 
   My_Straight_Leg_Model.L_Tw = -( My_Straight_Leg_Model.l_s_part + My_Straight_Leg_Model.l_theta_part + My_Straight_Leg_Model.l_phi_part );
 	
 	/* ÓÒÇý¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
-	My_Straight_Leg_Model.r_s_part = K->wheelr_K[0] * constrain(My_State_Var.s, -0.1f, 0.1f) + K->wheelr_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
+	My_Straight_Leg_Model.r_s_part = K->wheelr_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.1f, 0.1f) + K->wheelr_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
 	
-	My_Straight_Leg_Model.r_theta_part = K->wheelr_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) + K->wheelr_K[3] * My_State_Var.thetabd1;
+	My_Straight_Leg_Model.r_theta_part = \
+	  K->wheelr_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) + K->wheelr_K[3] * My_State_Var.thetabd1;
 	
-	My_Straight_Leg_Model.r_phi_part = -(K->wheelr_K[4] * My_Yaw_Zero_Point_Process(My_State_Var.phi) + K->wheelr_K[5] * My_State_Var.phid1);
+	My_Straight_Leg_Model.r_phi_part = \
+	  -(K->wheelr_K[4] * My_Yaw_Zero_Point_Process(My_State_Var.phi - My_Robot.target->spin_rad) + K->wheelr_K[5] * My_State_Var.phid1);
 
-  My_Straight_Leg_Model.R_Tw = -( My_Straight_Leg_Model.r_s_part + My_Straight_Leg_Model.r_theta_part + My_Straight_Leg_Model.r_phi_part );
+  My_Straight_Leg_Model.R_Tw = \
+	  -( My_Straight_Leg_Model.r_s_part + My_Straight_Leg_Model.r_theta_part + My_Straight_Leg_Model.r_phi_part );
 }
 
 /**
@@ -159,11 +214,6 @@ int16_t Motor_RM6020_Torque_to_Raw_Voltage(float tor)
 int16_t test1 = 0, testr = 0, switchc = 0;;
 void My_Wheel_Send_Torque(float r_tor, float l_tor)
 {
-//	can1_0x200_send_buff[0] = Motor_RM6020_Torque_to_Raw_Current(r_tor);
-//	
-//	can1_0x200_send_buff[1] = Motor_RM6020_Torque_to_Raw_Current(l_tor);
-//	
-//	CAN1_Send_With_int16_to_uint8(0x1FE, can1_0x200_send_buff);
 	can1_0x200_send_buff[0] = Motor_RM6020_Torque_to_Raw_Voltage(r_tor) * -1;
 	
 	testr = can1_0x200_send_buff[0];
@@ -172,7 +222,7 @@ void My_Wheel_Send_Torque(float r_tor, float l_tor)
 	
 	test1 = can1_0x200_send_buff[1];
 	
-	if(switchc == 1)
+	if(rc.info->status == DEV_ONLINE && My_Robot.imu_adapt_flag == true)
 	{
 		CAN1_Send_With_int16_to_uint8(0x1FF, can1_0x200_send_buff);
 	}
@@ -182,6 +232,14 @@ void My_Wheel_Send_Torque(float r_tor, float l_tor)
 		
 		can1_0x200_send_buff[1] = 0;
 		CAN1_Send_With_int16_to_uint8(0x1FF, can1_0x200_send_buff);
+		
+		My_Robot.target->velocity = 0.f;
+		
+		My_Robot.target->distance = My_State_Var.s;
+		
+		My_Robot.target->spin_rad = My_State_Var.phi;
+		
+		My_Robot.target->spin_velocity = 0.f;
 	}
 }
 

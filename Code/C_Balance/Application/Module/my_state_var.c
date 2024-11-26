@@ -22,7 +22,7 @@ void My_State_Var_Update(void)
 	
   My_State_Var.s_now = My_State_Var.s;
   
-  My_State_Var.sd1 = lowpass(My_State_Var.sd1, ((My_State_Var.s_now - My_State_Var.s_last) / TIME_BASE), 0.05f);
+  My_State_Var.sd1 = lowpass(My_State_Var.sd1, ((My_State_Var.s_now - My_State_Var.s_last) / TIME_BASE), 0.01f);
   
   My_State_Var.s_last = My_State_Var.s_now;
   

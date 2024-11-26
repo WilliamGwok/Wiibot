@@ -120,6 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name>D</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -202,10 +203,15 @@
         <Ww>
           <count>9</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Kp,0x0A</ItemText>
+          <ItemText>bmi_Kp</ItemText>
         </Ww>
         <Ww>
           <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>My_Robot,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
           <WinNumber>1</WinNumber>
           <ItemText>rc,0x0A</ItemText>
         </Ww>

@@ -144,8 +144,10 @@ r = rank(Control);
 disp(r);
 
 
-Q = double(diag([80 1 30 1 10 1]));
+Q = double(diag([10 1 100 1 10 1]));
 R = double(diag([1.5 1.5]));
+% Q = double(diag([80 1 30 1 10 1]));
+% R = double(diag([1.5 1.5]));
 sys = ss(A_b, B_b, C_a, D_a);
 K = lqr(sys, Q, R);
 
