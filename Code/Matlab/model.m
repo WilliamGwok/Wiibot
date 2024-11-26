@@ -132,8 +132,8 @@ D_a = zeros(6, 2);
 A_b = subs(A_a, [sd1 phi_b phid1_b thetab thetad1_b Tw_r Tw_l], [0 0 0 0 0 0 0]);
 B_b = subs(B_a, [sd1 phi_b phid1_b thetab thetad1_b Tw_r Tw_l], [0 0 0 0 0 0 0]);
  
-sub_var = [   mb       mw         I_w         I_b         I_z         rw       D       L         g      ];
-real_var = [  4        0.2        0.000175    0.007034    0.023312    0.044    0.21    0.062     9.81     ];
+sub_var = [   mb          mw         I_w         I_b         I_z         rw       D       L         g      ];
+real_var = [  4.73        0.2        0.000175    0.007034    0.023312    0.044    0.21    0.062     9.81     ];
 
 A_b = double(subs(A_b, sub_var, real_var))
 B_b = double(subs(B_b, sub_var, real_var))
@@ -144,8 +144,8 @@ r = rank(Control);
 disp(r);
 
 
-Q = double(diag([10 1 100 1 10 1]));
-R = double(diag([1.5 1.5]));
+Q = double(diag([150 1 500 1 150 1]));
+R = double(diag([10 10]));
 % Q = double(diag([80 1 30 1 10 1]));
 % R = double(diag([1.5 1.5]));
 sys = ss(A_b, B_b, C_a, D_a);

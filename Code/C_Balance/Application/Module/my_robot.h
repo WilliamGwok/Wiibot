@@ -11,8 +11,8 @@
 #define STICK_DRIFT_THRESHOLD   10
 #define MAX_CHANNEL             500
 
-#define MAX_VELOCITY            0.25f
-
+#define MAX_VELOCITY            0.5f
+#define MAX_SPIN_VELOCITY       1.5f
 
 typedef struct Straight_Leg_Model_struct_t
 {
@@ -72,5 +72,6 @@ void My_Robot_Control(void);
 void My_Robot_Imu_Kp_Adapt(void);
 void My_Robot_RC_Value_Filt(void);
 void My_Robot_Distance_Target_Process(void);
+void My_Robot_Spin_Target_Process(void);
 
 #endif

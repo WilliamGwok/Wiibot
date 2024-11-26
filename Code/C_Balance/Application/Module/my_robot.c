@@ -36,6 +36,8 @@ void My_Robot_Update(void)
 	My_Robot_RC_Value_Filt();
 	
 	My_Robot_Distance_Target_Process();
+	
+	My_Robot_Spin_Target_Process();
 }
 
 void My_Robot_Output_Cal(void)
@@ -121,6 +123,14 @@ void My_Robot_Distance_Target_Process(void)
 	My_Robot.target->distance += My_Robot.target->velocity * TIME_BASE;
 }
 
+//ch0
+void My_Robot_Spin_Target_Process(void)
+{
+	My_Robot.target->spin_velocity = -((float)My_Robot.remote->ch0 / MAX_CHANNEL) * MAX_SPIN_VELOCITY;
+	
+	My_Robot.target->spin_rad += My_Robot.target->spin_velocity * TIME_BASE;
+}
+
 
 /*........................................LQR¿ØÖÆÆ÷²¿·Öbegin........................................*/
 
@@ -131,25 +141,38 @@ void My_Model_Output_Cal(void)
   K_Matrix_t *K = &My_K_Matrix;
 
 	/* ×óÇý¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
-	My_Straight_Leg_Model.l_s_part = K->wheell_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.1f, 0.1f) + K->wheell_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
+	My_Straight_Leg_Model.l_s_part = \
+	  K->wheell_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.4f, 0.4f) \
+	  + K->wheell_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -0.7f, 0.7f);
 	
-	My_Straight_Leg_Model.l_theta_part = K->wheell_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) + K->wheell_K[3] * My_State_Var.thetabd1;
+	My_Straight_Leg_Model.l_theta_part = \
+	  K->wheell_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) \
+	  + K->wheell_K[3] * My_State_Var.thetabd1;
 	
-	My_Straight_Leg_Model.l_phi_part = -(K->wheell_K[4] * My_Yaw_Zero_Point_Process(My_State_Var.phi - My_Robot.target->spin_rad) + K->wheell_K[5] * My_State_Var.phid1);
+	My_Straight_Leg_Model.l_phi_part = \
+	  -(K->wheell_K[4] * My_Yaw_Zero_Point_Process(My_State_Var.phi - My_Robot.target->spin_rad) \
+	  + K->wheell_K[5] * (My_State_Var.phid1 - My_Robot.target->spin_velocity));
 
-  My_Straight_Leg_Model.L_Tw = -( My_Straight_Leg_Model.l_s_part + My_Straight_Leg_Model.l_theta_part + My_Straight_Leg_Model.l_phi_part );
+  My_Straight_Leg_Model.L_Tw = \
+	  -( My_Straight_Leg_Model.l_s_part \
+	  + My_Straight_Leg_Model.l_theta_part + My_Straight_Leg_Model.l_phi_part );
 	
 	/* ÓÒÇý¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
-	My_Straight_Leg_Model.r_s_part = K->wheelr_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.1f, 0.1f) + K->wheelr_K[1] * constrain(My_State_Var.sd1, -0.7f, 0.7f);
+	My_Straight_Leg_Model.r_s_part = \
+	  K->wheelr_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.4f, 0.4f) \
+		+ K->wheelr_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -0.7f, 0.7f);
 	
 	My_Straight_Leg_Model.r_theta_part = \
-	  K->wheelr_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) + K->wheelr_K[3] * My_State_Var.thetabd1;
+	  K->wheelr_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) \
+		+ K->wheelr_K[3] * My_State_Var.thetabd1;
 	
 	My_Straight_Leg_Model.r_phi_part = \
-	  -(K->wheelr_K[4] * My_Yaw_Zero_Point_Process(My_State_Var.phi - My_Robot.target->spin_rad) + K->wheelr_K[5] * My_State_Var.phid1);
+	  -(K->wheelr_K[4] * My_Yaw_Zero_Point_Process(My_State_Var.phi - My_Robot.target->spin_rad) \
+		+ K->wheelr_K[5] * (My_State_Var.phid1 - My_Robot.target->spin_velocity));
 
   My_Straight_Leg_Model.R_Tw = \
-	  -( My_Straight_Leg_Model.r_s_part + My_Straight_Leg_Model.r_theta_part + My_Straight_Leg_Model.r_phi_part );
+	  -( My_Straight_Leg_Model.r_s_part \
+		+ My_Straight_Leg_Model.r_theta_part + My_Straight_Leg_Model.r_phi_part );
 }
 
 /**
