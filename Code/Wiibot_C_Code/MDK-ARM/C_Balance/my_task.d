@@ -69,3 +69,4 @@ c_balance\my_task.o: ../Application/Task/INS_task.h
 c_balance\my_task.o: ../Application/Config/config_mec.h
 c_balance\my_task.o: ../Application/Device/remote.h
 c_balance\my_task.o: ../Core/Inc/main.h
+c_balance\my_task.o: ../Application/Module/my_joint.h

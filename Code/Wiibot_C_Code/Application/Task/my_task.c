@@ -7,6 +7,7 @@
 #include "sd_motor.h"
 #include "wheel_motor.h"
 #include "remote.h"
+#include "my_joint.h"
 
 //extern IWDG_HandleTypeDef hiwdg;
 
@@ -62,6 +63,8 @@ void Task_M(void const * argument)
 	/*车间通讯,车辆控制*/
   for(;;)
   {
+		My_Joint_Control();
+		
 		My_Robot_Control();
 		
 	

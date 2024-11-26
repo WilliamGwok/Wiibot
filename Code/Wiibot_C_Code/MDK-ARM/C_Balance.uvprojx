@@ -1838,6 +1838,11 @@
               <FileType>1</FileType>
               <FilePath>..\Application\Algo\lqr.c</FilePath>
             </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\Algo\pid.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

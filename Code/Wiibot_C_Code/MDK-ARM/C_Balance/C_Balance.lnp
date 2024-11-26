@@ -61,6 +61,7 @@
 "c_balance\sd_motor.o"
 "c_balance\wheel_motor.o"
 "c_balance\lqr.o"
+"c_balance\pid.o"
 "c_balance\ktech_motor.o"
 "c_balance\math_support.o"
 "c_balance\motor.o"

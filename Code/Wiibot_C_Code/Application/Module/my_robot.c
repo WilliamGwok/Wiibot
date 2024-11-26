@@ -267,7 +267,7 @@ void My_Wheel_Send_Torque(float r_tor, float l_tor)
 	
 	if(rc.info->status == DEV_ONLINE && My_Robot.imu_adapt_flag == true)
 	{
-		CAN1_Send_With_int16_to_uint8(0x1FF, can1_0x200_send_buff);
+//		CAN1_Send_With_int16_to_uint8(0x1FF, can1_0x200_send_buff);
 	}
 	else
 	{

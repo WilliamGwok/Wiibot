@@ -48,4 +48,7 @@ c_balance\my_joint.o: D:\MDK\ARM\ARMCC\Bin\..\include\string.h
 c_balance\my_joint.o: ../Application/Pack/math_support.h
 c_balance\my_joint.o: ../Application/Task/INS_task.h
 c_balance\my_joint.o: ../Application/Config/struct_typedef.h
+c_balance\my_joint.o: ../Application/Device/remote.h
+c_balance\my_joint.o: ../Core/Inc/main.h
 c_balance\my_joint.o: ../Application/Config/config_mec.h
+c_balance\my_joint.o: ../Application/Algo/pid.h
