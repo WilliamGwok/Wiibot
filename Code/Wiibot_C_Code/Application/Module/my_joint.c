@@ -82,6 +82,7 @@ void My_Joint_Target_Process(void)
 //该计算方式没有通用性
 void My_Joint_Phi4_Get(void)
 {
+	/*更新关节角度*/
 	if(R_Sd.rx_info->motor_angle > PI)
 	{
 		My_Joint[R_LEG].measure->phi4_rad = R_JOINT_ORG_ANGLE + (2 * PI - R_Sd.rx_info->motor_angle);
@@ -92,63 +93,78 @@ void My_Joint_Phi4_Get(void)
 	}
 	
 	My_Joint[L_LEG].measure->phi4_rad = L_Sd.rx_info->motor_angle - L_JOINT_ORG_ANGLE;
+	
+	/*更新关节角速度*/
+	My_Joint[R_LEG].measure->speed = R_Sd.rx_info->speed / 8.f * PI / 30.f;
+	
+	My_Joint[L_LEG].measure->speed = L_Sd.rx_info->speed / 8.f * PI / 30.f;
+	
 }
+
+//pid_info_t R_Leg_Length = 
+//{
+//  .kp = 200.f,
+//  .ki = 0.3f,
+//  .kd = 0.f,
+//  .integral_max = 50.f,
+//  .out_max = 150.f,
+//};
 
 /*腿长控制外环*/
 pid_info_t R_Leg_Length = 
 {
-  .kp = 200.f,//750
-  .ki = 0.3f,
+  .kp = -50.f,
+  .ki = 0.f,
   .kd = 0.f,
-  .integral_max = 50.f,
-  .out_max = 150.f,
+  .integral_max = 0.f,
+  .out_max = 20.f,
 };
 
 pid_info_t L_Leg_Length = 
 {
-  .kp = 200.f,//750
-  .ki = 0.3f,
+  .kp = 50.f,
+  .ki = 0.f,
   .kd = 0.f,
-  .integral_max = 1.f,
-  .out_max = 150.f,
+  .integral_max = 0.f,
+  .out_max = 30.f,
 };
 
 /*腿长控制内环速度环*/
 pid_info_t R_Leg_Speed = 
 {
-  .kp = 200.f,//750
-  .ki = 0.3f,
+  .kp = 3.f,
+  .ki = 0.7f,
   .kd = 0.f,
-  .integral_max = 50.f,
-  .out_max = 150.f,
+  .integral_max = 5.f,
+  .out_max = 30.f,
 };
 
 pid_info_t L_Leg_Speed = 
 {
-  .kp = 200.f,//750
-  .ki = 0.3f,
+  .kp = 3.f,
+  .ki = 0.7f,
   .kd = 0.f,
-  .integral_max = 1.f,
-  .out_max = 150.f,
+  .integral_max = 5.f,
+  .out_max = 30.f,
 };
 
 pid_t Leg_Length_Pid[LEG_LIST] = 
-{
-  [L_LEG] = {
-    .info = &L_Leg_Speed,
-  },
-  [R_LEG] = {
-    .info = &R_Leg_Speed,
-  },
-};
-
-pid_t Leg_Speed_Pid[LEG_LIST] = 
 {
   [L_LEG] = {
     .info = &L_Leg_Length,
   },
   [R_LEG] = {
     .info = &R_Leg_Length,
+  },
+};
+
+pid_t Leg_Speed_Pid[LEG_LIST] = 
+{
+  [L_LEG] = {
+    .info = &L_Leg_Speed,
+  },
+  [R_LEG] = {
+    .info = &R_Leg_Speed,
   },
 };
 
@@ -169,24 +185,50 @@ void My_Joint_Torque_Cal(void)
 	
 	Leg_Length_Pid[R_LEG].info->target = My_Joint[R_LEG].target->joint_rad;
 	
-	single_pid_ctrl(Leg_Length_Pid[R_LEG].info);
+	Leg_Speed_Pid[R_LEG].info->measure = My_Joint[R_LEG].measure->speed;
+	
+	Joint_Double_PID_Cal(&Leg_Length_Pid[R_LEG], &Leg_Speed_Pid[R_LEG]);
 	
 	Leg_Length_Pid[L_LEG].info->measure = My_Joint[L_LEG].measure->phi4_rad;
 	
 	Leg_Length_Pid[L_LEG].info->target = My_Joint[L_LEG].target->joint_rad;
 	
-	single_pid_ctrl(Leg_Length_Pid[L_LEG].info);
+	Leg_Speed_Pid[L_LEG].info->measure = My_Joint[L_LEG].measure->speed;
+	
+	Joint_Double_PID_Cal(&Leg_Length_Pid[L_LEG], &Leg_Speed_Pid[L_LEG]);
 	
 	if(rc.info->status == DEV_ONLINE)
 	{
-		L_Sd.tx_info->torque = Leg_Length_Pid[L_LEG].info->out;
+		L_Sd.tx_info->torque = Leg_Speed_Pid[L_LEG].info->out;
 	
 	  L_Sd.single_set_torque(&L_Sd);
 		
-		R_Sd.tx_info->torque = -Leg_Length_Pid[R_LEG].info->out;
+		R_Sd.tx_info->torque = Leg_Speed_Pid[R_LEG].info->out;
 	
 	  R_Sd.single_set_torque(&R_Sd);
 	}
+//	Leg_Length_Pid[R_LEG].info->measure = My_Joint[R_LEG].measure->phi4_rad;
+//	
+//	Leg_Length_Pid[R_LEG].info->target = My_Joint[R_LEG].target->joint_rad;
+//	
+//	single_pid_ctrl(Leg_Length_Pid[R_LEG].info);
+//	
+//	Leg_Length_Pid[L_LEG].info->measure = My_Joint[L_LEG].measure->phi4_rad;
+//	
+//	Leg_Length_Pid[L_LEG].info->target = My_Joint[L_LEG].target->joint_rad;
+//	
+//	single_pid_ctrl(Leg_Length_Pid[L_LEG].info);
+//	
+//	if(rc.info->status == DEV_ONLINE)
+//	{
+//		L_Sd.tx_info->torque = Leg_Length_Pid[L_LEG].info->out;
+//	
+//	  L_Sd.single_set_torque(&L_Sd);
+//		
+//		R_Sd.tx_info->torque = -Leg_Length_Pid[R_LEG].info->out;
+//	
+//	  R_Sd.single_set_torque(&R_Sd);
+//	}
 }
 
 
