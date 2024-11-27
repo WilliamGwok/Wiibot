@@ -181,7 +181,7 @@ float Joint_Double_PID_Cal(pid_t* pid_out, pid_t* pid_in)
 
 void My_Joint_Torque_Cal(void)
 {
-	Leg_Length_Pid[R_LEG].info->measure = My_Joint[R_LEG].measure->phi4_rad;
+	Leg_Length_Pid[R_LEG].info->measure = (My_Joint[R_LEG].measure->phi4_rad + My_Joint[L_LEG].measure->phi4_rad) / 2.f;
 	
 	Leg_Length_Pid[R_LEG].info->target = My_Joint[R_LEG].target->joint_rad;
 	
@@ -189,7 +189,7 @@ void My_Joint_Torque_Cal(void)
 	
 	Joint_Double_PID_Cal(&Leg_Length_Pid[R_LEG], &Leg_Speed_Pid[R_LEG]);
 	
-	Leg_Length_Pid[L_LEG].info->measure = My_Joint[L_LEG].measure->phi4_rad;
+	Leg_Length_Pid[L_LEG].info->measure = (My_Joint[R_LEG].measure->phi4_rad + My_Joint[L_LEG].measure->phi4_rad) / 2.f;
 	
 	Leg_Length_Pid[L_LEG].info->target = My_Joint[L_LEG].target->joint_rad;
 	
@@ -201,16 +201,16 @@ void My_Joint_Torque_Cal(void)
 	My_Joint_Roll_Torque_Cal();
 	
 	
-	if(rc.info->status == DEV_ONLINE)
-	{
-		L_Sd.tx_info->torque = Leg_Speed_Pid[L_LEG].info->out;
-	
-	  L_Sd.single_set_torque(&L_Sd);
-		
-		R_Sd.tx_info->torque = Leg_Speed_Pid[R_LEG].info->out;
-	
-	  R_Sd.single_set_torque(&R_Sd);
-	}
+//	if(rc.info->status == DEV_ONLINE)
+//	{
+//		L_Sd.tx_info->torque = Leg_Speed_Pid[L_LEG].info->out;
+//	
+//	  L_Sd.single_set_torque(&L_Sd);
+//		
+//		R_Sd.tx_info->torque = Leg_Speed_Pid[R_LEG].info->out;
+//	
+//	  R_Sd.single_set_torque(&R_Sd);
+//	}
 }
 
 
@@ -227,7 +227,7 @@ pid_info_t L_Leg_Roll =
 {
   .kp = 10.f,
   .ki = 0.1f,
-  .kd = 0.f,//4000
+  .kd = 0.f,
   .integral_max = 0.f,
   .out_max = 50.f,
 };
@@ -235,19 +235,19 @@ pid_info_t L_Leg_Roll =
 pid_info_t R_Leg_Roll_Speed = 
 {
   .kp = 10.f,
-  .ki = 0.1f,
+  .ki = 0.3f,
   .kd = 0.f,
-  .integral_max = 0.f,
-  .out_max = 50.f,
+  .integral_max = 10.f,
+  .out_max = 30.f,
 };
 
 pid_info_t L_Leg_Roll_Speed = 
 {
   .kp = 10.f,
-  .ki = 0.1f,
-  .kd = 0.f,//4000
-  .integral_max = 0.f,
-  .out_max = 50.f,
+  .ki = 0.3f,
+  .kd = 0.f,
+  .integral_max = 10.f,
+  .out_max = 30.f,
 };
 
 pid_t Leg_Roll_Pid[LEG_LIST] = 
@@ -287,5 +287,16 @@ void My_Joint_Roll_Torque_Cal(void)
 	Leg_Roll_Speed_Pid[R_LEG].info->measure = My_Posture.roll_v;
 	
 	Joint_Double_PID_Cal(&Leg_Roll_Pid[R_LEG], &Leg_Roll_Speed_Pid[R_LEG]);
+	
+		if(rc.info->status == DEV_ONLINE)
+	{
+		L_Sd.tx_info->torque = Leg_Roll_Speed_Pid[L_LEG].info->out + Leg_Speed_Pid[L_LEG].info->out;
+	
+	  L_Sd.single_set_torque(&L_Sd);
+		
+		R_Sd.tx_info->torque = Leg_Roll_Speed_Pid[R_LEG].info->out + Leg_Speed_Pid[R_LEG].info->out;
+	
+	  R_Sd.single_set_torque(&R_Sd);
+	}
 }
 

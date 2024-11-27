@@ -21,6 +21,6 @@ void My_Posture_Update(void)
 	My_Posture.pitch_v = lowpass(My_Posture.pitch_v, gyro[1], 0.1f);
 //	My_Posture.pitch_v = gyro[1];
 	
-	My_Posture.roll_v = gyro[0];
+	My_Posture.roll_v = lowpass(My_Posture.roll_v, gyro[0], 0.1f);
 }
 

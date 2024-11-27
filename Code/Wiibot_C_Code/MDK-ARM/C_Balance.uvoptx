@@ -244,6 +244,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>Leg_Roll_Pid</ItemText>
         </Ww>
+        <Ww>
+          <count>18</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Leg_Roll_Speed_Pid</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
