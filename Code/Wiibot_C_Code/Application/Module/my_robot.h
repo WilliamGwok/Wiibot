@@ -12,7 +12,7 @@
 #define MAX_CHANNEL             500
 
 #define MAX_VELOCITY            0.5f
-#define MAX_SPIN_VELOCITY       1.5f
+#define MAX_SPIN_VELOCITY       3.f
 
 typedef struct Straight_Leg_Model_struct_t
 {

@@ -6,23 +6,23 @@
 
 typedef struct 
 {
-  double	target;
-  double	measure;
-  double 	err;
-  double 	last_err;
-  double	integral;
-  double 	pout;
-  double 	iout;
-  double 	dout;
-  double 	out;
+  float	target;
+  float	measure;
+  float 	err;
+  float 	last_err;
+  float	integral;
+  float 	pout;
+  float 	iout;
+  float 	dout;
+  float 	out;
 /* ÅäÖÃ */
-  double   blind_err;
-  double   integral_bias;
-  double	kp;
-  double 	ki;
-  double 	kd;
-  double 	integral_max;
-  double 	out_max;
+  float   blind_err;
+  float   integral_bias;
+  float	kp;
+  float 	ki;
+  float 	kd;
+  float 	integral_max;
+  float 	out_max;
 }pid_info_t;
 
 typedef struct

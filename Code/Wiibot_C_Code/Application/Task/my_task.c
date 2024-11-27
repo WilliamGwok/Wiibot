@@ -37,13 +37,13 @@ void Task_H2(void const * argument)
 	/*失联检测，视觉交互，车间通讯*/
   for(;;)
   {
-		task_this_m = micros();
+		
 		
 		imu_update(&imu);
 		
 		Imu_PWM_Set(imu.base_info->temp);
 		
-		task_err_m =  micros() - task_this_m ;
+		
 		
 		My_Sd_HeartBeat();
 		
@@ -63,12 +63,16 @@ void Task_M(void const * argument)
 	/*车间通讯,车辆控制*/
   for(;;)
   {
-		My_Joint_Control();
+		task_this_m = micros();
+		
+		
 		
 		My_Robot_Control();
 		
-	
+		My_Joint_Control();//在6020后发，buglist
 		
+	
+		task_err_m =  micros() - task_this_m ;
 		
 		//HAL_IWDG_Refresh(&hiwdg);
 		

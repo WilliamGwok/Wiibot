@@ -120,7 +120,8 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-        </SetRegEntry>
+          <Name>
+</Name>        </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>ARMRTXEVENTFLAGS</Key>
@@ -228,6 +229,11 @@
           <count>14</count>
           <WinNumber>1</WinNumber>
           <ItemText>My_Joint</ItemText>
+        </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Leg_Length_Pid</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
