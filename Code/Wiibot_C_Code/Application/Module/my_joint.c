@@ -113,18 +113,18 @@ void My_Joint_Phi4_Get(void)
 /*腿长控制外环*/
 pid_info_t R_Leg_Length = 
 {
-  .kp = -50.f,
+  .kp = -100.f,
   .ki = 0.f,
-  .kd = 0.f,
+  .kd = -50.f,
   .integral_max = 0.f,
-  .out_max = 20.f,
+  .out_max = 30.f,
 };
 
 pid_info_t L_Leg_Length = 
 {
-  .kp = 50.f,
+  .kp = 100.f,
   .ki = 0.f,
-  .kd = 0.f,
+  .kd = 50.f,
   .integral_max = 0.f,
   .out_max = 30.f,
 };
@@ -136,7 +136,7 @@ pid_info_t R_Leg_Speed =
   .ki = 0.7f,
   .kd = 0.f,
   .integral_max = 5.f,
-  .out_max = 30.f,
+  .out_max = 50.f,
 };
 
 pid_info_t L_Leg_Speed = 
@@ -145,7 +145,7 @@ pid_info_t L_Leg_Speed =
   .ki = 0.7f,
   .kd = 0.f,
   .integral_max = 5.f,
-  .out_max = 30.f,
+  .out_max = 50.f,
 };
 
 pid_t Leg_Length_Pid[LEG_LIST] = 
@@ -197,6 +197,10 @@ void My_Joint_Torque_Cal(void)
 	
 	Joint_Double_PID_Cal(&Leg_Length_Pid[L_LEG], &Leg_Speed_Pid[L_LEG]);
 	
+	
+	My_Joint_Roll_Torque_Cal();
+	
+	
 	if(rc.info->status == DEV_ONLINE)
 	{
 		L_Sd.tx_info->torque = Leg_Speed_Pid[L_LEG].info->out;
@@ -207,47 +211,43 @@ void My_Joint_Torque_Cal(void)
 	
 	  R_Sd.single_set_torque(&R_Sd);
 	}
-//	Leg_Length_Pid[R_LEG].info->measure = My_Joint[R_LEG].measure->phi4_rad;
-//	
-//	Leg_Length_Pid[R_LEG].info->target = My_Joint[R_LEG].target->joint_rad;
-//	
-//	single_pid_ctrl(Leg_Length_Pid[R_LEG].info);
-//	
-//	Leg_Length_Pid[L_LEG].info->measure = My_Joint[L_LEG].measure->phi4_rad;
-//	
-//	Leg_Length_Pid[L_LEG].info->target = My_Joint[L_LEG].target->joint_rad;
-//	
-//	single_pid_ctrl(Leg_Length_Pid[L_LEG].info);
-//	
-//	if(rc.info->status == DEV_ONLINE)
-//	{
-//		L_Sd.tx_info->torque = Leg_Length_Pid[L_LEG].info->out;
-//	
-//	  L_Sd.single_set_torque(&L_Sd);
-//		
-//		R_Sd.tx_info->torque = -Leg_Length_Pid[R_LEG].info->out;
-//	
-//	  R_Sd.single_set_torque(&R_Sd);
-//	}
 }
 
 
 pid_info_t R_Leg_Roll = 
 {
-  .kp = 500.f,
+  .kp = 10.f,
   .ki = 0.1f,
   .kd = 0.f,
   .integral_max = 0.f,
-  .out_max = 210.f,
+  .out_max = 50.f,
 };
 
 pid_info_t L_Leg_Roll = 
 {
-  .kp = 500.f,
+  .kp = 10.f,
   .ki = 0.1f,
   .kd = 0.f,//4000
   .integral_max = 0.f,
-  .out_max = 210.f,
+  .out_max = 50.f,
+};
+
+pid_info_t R_Leg_Roll_Speed = 
+{
+  .kp = 10.f,
+  .ki = 0.1f,
+  .kd = 0.f,
+  .integral_max = 0.f,
+  .out_max = 50.f,
+};
+
+pid_info_t L_Leg_Roll_Speed = 
+{
+  .kp = 10.f,
+  .ki = 0.1f,
+  .kd = 0.f,//4000
+  .integral_max = 0.f,
+  .out_max = 50.f,
 };
 
 pid_t Leg_Roll_Pid[LEG_LIST] = 
@@ -259,4 +259,33 @@ pid_t Leg_Roll_Pid[LEG_LIST] =
     .info = &R_Leg_Roll,
   },
 };
+
+pid_t Leg_Roll_Speed_Pid[LEG_LIST] = 
+{
+  [L_LEG] = {
+    .info = &L_Leg_Roll_Speed,
+  },
+  [R_LEG] = {
+    .info = &R_Leg_Roll_Speed,
+  },
+};
+
+void My_Joint_Roll_Torque_Cal(void)
+{
+	Leg_Roll_Pid[L_LEG].info->measure = My_Posture.roll;
+	
+	Leg_Roll_Pid[L_LEG].info->target = 0.f;
+	
+	Leg_Roll_Speed_Pid[L_LEG].info->measure = My_Posture.roll_v;
+	
+	Joint_Double_PID_Cal(&Leg_Roll_Pid[L_LEG], &Leg_Roll_Speed_Pid[L_LEG]);
+	
+	Leg_Roll_Pid[R_LEG].info->measure = My_Posture.roll;
+	
+	Leg_Roll_Pid[R_LEG].info->target = 0.f;
+	
+	Leg_Roll_Speed_Pid[R_LEG].info->measure = My_Posture.roll_v;
+	
+	Joint_Double_PID_Cal(&Leg_Roll_Pid[R_LEG], &Leg_Roll_Speed_Pid[R_LEG]);
+}
 

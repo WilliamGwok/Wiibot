@@ -21,7 +21,7 @@ typedef enum
 #define L_JOINT_ORG_ANGLE     0.23f;
 
 #define JOINT_RAD_TAR_MAX     0.7f
-#define JOINT_RAD_SPEED_MAX   0.3f
+#define JOINT_RAD_SPEED_MAX   0.35f
 
 typedef struct Leg_Target_struct_t
 {
@@ -53,5 +53,6 @@ void My_Joint_Control(void);
 void My_Joint_Target_Process(void);
 void My_Joint_Torque_Cal(void);
 float Joint_Double_PID_Cal(pid_t* pid_out, pid_t* pid_in);
+void My_Joint_Roll_Torque_Cal(void);
 
 #endif
