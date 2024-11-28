@@ -161,10 +161,10 @@ void My_Model_Output_Cal(void)
 	/* ×óÇý¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
 	My_Straight_Leg_Model.l_s_part = \
 	  K->wheell_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.4f, 0.4f) \
-	  + K->wheell_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -0.7f, 0.7f);
+	  + K->wheell_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -0.5f, 0.5f);
 	
 	My_Straight_Leg_Model.l_theta_part = \
-	  K->wheell_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) \
+	  K->wheell_K[2] * constrain(My_State_Var.thetab, -0.6f, 0.6f) \
 	  + K->wheell_K[3] * My_State_Var.thetabd1;
 	
 	My_Straight_Leg_Model.l_phi_part = \
@@ -178,10 +178,10 @@ void My_Model_Output_Cal(void)
 	/* ÓÒÇý¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
 	My_Straight_Leg_Model.r_s_part = \
 	  K->wheelr_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.4f, 0.4f) \
-		+ K->wheelr_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -0.7f, 0.7f);
+		+ K->wheelr_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -0.5f, 0.5f);
 	
 	My_Straight_Leg_Model.r_theta_part = \
-	  K->wheelr_K[2] * constrain(My_State_Var.thetab, -0.5f, 0.5f) \
+	  K->wheelr_K[2] * constrain(My_State_Var.thetab, -0.6f, 0.6f) \
 		+ K->wheelr_K[3] * My_State_Var.thetabd1;
 	
 	My_Straight_Leg_Model.r_phi_part = \

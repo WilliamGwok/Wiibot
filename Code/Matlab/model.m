@@ -138,13 +138,12 @@ real_var = [  4.73        0.2        0.000175    0.007034    0.023312    0.044  
 A_b = double(subs(A_b, sub_var, real_var))
 B_b = double(subs(B_b, sub_var, real_var))
 
-
 Control = ctrb(A_b, B_b);
 r = rank(Control);
 disp(r);
 
 
-Q = double(diag([150 1 500 1 150 1]));
+Q = double(diag([150 1 800 1 150 1]));
 R = double(diag([10 10]));
 % Q = double(diag([80 1 30 1 10 1]));
 % R = double(diag([1.5 1.5]));
