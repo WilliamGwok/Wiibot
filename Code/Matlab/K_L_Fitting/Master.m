@@ -25,7 +25,7 @@ C_b = eye(6);
 D_b = zeros(6, 2);
 %% 2.设置拟合次数，计算对应个数的腿长值
 
-linear_times = 30;%拟合次数
+linear_times = 500;%拟合次数
 % 已知a,b杆长度，单位为米
 a = 0.11461;
 b = 0.11291;
@@ -67,99 +67,166 @@ for i = 1 : 1 : linear_times
             K_room{j,k}(i) = K(j, k);
         end
     end
-
 end
+
+
 %% 4.对角A与K矩阵值进行多项式拟合
 
+fitting_order = 4;
 
+K_fit_room = cell(K_size_row,K_size_col);
+K_fit_line_room = cell(K_size_row,K_size_col);
+for i = 1 : 1 : K_size_row
+    for j = 1 : 1 : K_size_col
+        K_fit_room{i,j} = zeros(1, fitting_order + 1);
+    end
+end
 
+for i = 1 : 1 : K_size_row
+    for j = 1 : 1 : K_size_col
+        my_n = polyfit(A_rad, K_room{i,j}, fitting_order);
 
+        K_fit_room{i,j} = round(my_n,5);
 
+        K_fit_line_room{i,j} = polyval(K_fit_room{i,j}, A_rad);
+    end
+end
+
+% 将拟合系数存入到excel表格中
+filename = 'Will_data.xlsx';
+%将拟合系数保存到excel中
+writetable(cell2table(K_fit_room), filename, 'Sheet', 1);
+disp('数据已存入excel');
+%% 5.绘制拟合曲线与实际曲线比较图
+
+color_org = [0.44, 0.62, 0.98];
+color_fit = [0.68, 0.42, 0.89];
+
+figure
+
+set(gcf, 'Position', [200, 200, 1600, 800]);
 
 subplot(2, 6, 1)
-plot(length, K_room{1,1});
-xlabel('腿长L (米)');
-ylabel('左位移K(1,1)');
-title('左位移K(1,1)关于腿长L的变化');
+
+plot(A_rad, K_room{1,1}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{1,1}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Left displacement K(1,1)');
+title('Left displacement K(1,1) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 2)
-plot(length, K_room{1,2});
-xlabel('腿长L (米)');
-ylabel('左速度K(1,2)');
-title('左速度K(1,2)关于腿长L的变化');
+plot(A_rad, K_room{1,2}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{1,2}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Left velocity K(1,2)');
+title('Left velocity K(1,2) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 3)
-plot(length, K_room{1,3});
-xlabel('腿长L (米)');
-ylabel('左俯仰角K(1,3)');
-title('左俯仰角K(1,3)关于腿长L的变化');
+plot(A_rad, K_room{1,3}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{1,3}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Left pitch angle K(1,3)');
+title('Left pitch angle K(1,3) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 4)
-plot(length, K_room{1,4});
-xlabel('腿长L (米)');
-ylabel('左俯仰角速度K(1,4)');
-title('左俯仰角速度K(1,4)关于腿长L的变化');
+plot(A_rad, K_room{1,4}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{1,4}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Left pitch rate K(1,4)');
+title('Left pitch rate K(1,4) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 5)
-plot(length, K_room{1,5});
-xlabel('腿长L (米)');
-ylabel('左偏航角K(1,5)');
-title('左偏航角K(1,5)关于腿长L的变化');
+plot(A_rad, K_room{1,5}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{1,5}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Left yaw angle K(1,5)');
+title('Left yaw angle K(1,5) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 6)
-plot(length, K_room{1,6});
-xlabel('腿长L (米)');
-ylabel('左偏航角速度K(1,6)');
-title('左偏航角速度K(1,6)关于腿长L的变化');
+plot(A_rad, K_room{1,6}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{1,6}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Left yaw rate K(1,6)');
+title('Left yaw rate K(1,6) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 7)
-plot(length, K_room{2,1});
-xlabel('腿长L (米)');
-ylabel('右位移K(2,1)');
-title('右位移K(2,1)关于腿长L的变化');
+plot(A_rad, K_room{2,1}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{2,1}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Right displacement K(2,1)');
+title('Right displacement K(2,1) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 8)
-plot(length, K_room{2,2});
-xlabel('腿长L (米)');
-ylabel('右速度K(2,2)');
-title('右速度K(2,2)关于腿长L的变化');
+plot(A_rad, K_room{2,2}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{2,2}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Right velocity K(2,2)');
+title('Right velocity K(2,2) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 9)
-plot(length, K_room{2,3});
-xlabel('腿长L (米)');
-ylabel('右俯仰角K(2,3)');
-title('右俯仰角K(2,3)关于腿长L的变化');
+plot(A_rad, K_room{2,3}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{2,3}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Right pitch angle K(2,3)');
+title('Right pitch angle K(2,3) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 10)
-plot(length, K_room{2,4});
-xlabel('腿长L (米)');
-ylabel('右俯仰角速度K(2,4)');
-title('右俯仰角速度K(2,4)关于腿长L的变化');
+plot(A_rad, K_room{2,4}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{2,4}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Right pitch rate K(2,4)');
+title('Right pitch rate K(2,4) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 11)
-plot(length, K_room{2,5});
-xlabel('腿长L (米)');
-ylabel('右偏航角K(2,5)');
-title('右偏航角K(2,5)关于腿长L的变化');
+plot(A_rad, K_room{2,5}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{2,5}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Right yaw angle K(2,5)');
+title('Right yaw angle K(2,5) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 subplot(2, 6, 12)
-plot(length, K_room{2,6});
-xlabel('腿长L (米)');
-ylabel('右偏航角速度K(2,6)');
-title('右偏航角速度K(2,6)关于腿长L的变化');
+plot(A_rad, K_room{2,6}, 'LineWidth', 2, 'Color', color_org);
+hold on;
+plot(A_rad, K_fit_line_room{2,6}, 'r--', 'LineWidth', 3, 'Color', color_fit);  % Plot the fitted curve
+xlabel('Angle A (rad)');
+ylabel('Right yaw rate K(2,6)');
+title('Right yaw rate K(2,6) vs Angle A');
+legend('Actual curve', 'Fitted curve');
 grid on;
 
 
-figure
-plot(A_rad, K_room{1,3});
+
+
