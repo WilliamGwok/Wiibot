@@ -43,7 +43,7 @@ length = b .* cos(A_rad) + sqrt(a^2 + b^2 .* cos(A_rad).^2 - b^2);
 K_size_row = 2;
 K_size_col = 6;
 
-Q = double(diag([150 1 800 1 150 1]));
+Q = double(diag([150 1 400 1 150 1]));
 R = double(diag([10 10]));
 
 K_room = cell(K_size_row,K_size_col);
@@ -97,6 +97,8 @@ filename = 'Will_data.xlsx';
 %将拟合系数保存到excel中
 writetable(cell2table(K_fit_room), filename, 'Sheet', 1);
 disp('数据已存入excel');
+AA = cell2table(K_fit_room);
+
 %% 5.绘制拟合曲线与实际曲线比较图
 
 color_org = [0.44, 0.62, 0.98];

@@ -55,3 +55,5 @@ c_balance\my_robot.o: ../Application/Device/IMU/bmi.h
 c_balance\my_robot.o: D:\MDK\ARM\ARMCC\Bin\..\include\math.h
 c_balance\my_robot.o: ../Application/Device/remote.h
 c_balance\my_robot.o: ../Core/Inc/main.h
+c_balance\my_robot.o: ..\Application\Module\my_joint.h
+c_balance\my_robot.o: ../Application/Algo/pid.h

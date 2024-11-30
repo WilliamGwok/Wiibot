@@ -4,6 +4,7 @@
 #include "my_state_var.h"
 #include "bmi.h"
 #include "remote.h"
+#include "my_joint.h"
 
 void My_Model_Output_Cal(void);
 void My_Wheel_Send_Torque(float r_tor, float l_tor);
@@ -39,9 +40,14 @@ void My_Robot_Update(void)
 	
 	My_Robot_Spin_Target_Process();
 }
-
+//float AAA = 0.f;
 void My_Robot_Output_Cal(void)
 {
+//	K_Matrix_Fitting_Update(&My_K_Matrix, (1.5708f - (My_Joint[L_LEG].measure->phi4_rad + A_INITIAL_ANGLE)),\
+//	                        (1.5708f - (My_Joint[R_LEG].measure->phi4_rad + A_INITIAL_ANGLE)));
+	
+//	AAA = 1.5708f - (My_Joint[R_LEG].measure->phi4_rad + A_INITIAL_ANGLE);
+	
 	My_Model_Output_Cal();
 }
 
@@ -161,10 +167,10 @@ void My_Model_Output_Cal(void)
 	/* ×óÇý¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
 	My_Straight_Leg_Model.l_s_part = \
 	  K->wheell_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.4f, 0.4f) \
-	  + K->wheell_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -0.5f, 0.5f);
+	  + K->wheell_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -2.f, 2.f);
 	
 	My_Straight_Leg_Model.l_theta_part = \
-	  K->wheell_K[2] * constrain(My_State_Var.thetab, -0.6f, 0.6f) \
+	  K->wheell_K[2] * My_State_Var.thetab \
 	  + K->wheell_K[3] * My_State_Var.thetabd1;
 	
 	My_Straight_Leg_Model.l_phi_part = \
@@ -178,10 +184,10 @@ void My_Model_Output_Cal(void)
 	/* ÓÒÇý¶¯ÂÖÅ¤¾ØÊä³ö¼ÆËã */
 	My_Straight_Leg_Model.r_s_part = \
 	  K->wheelr_K[0] * constrain((My_State_Var.s - My_Robot.target->distance), -0.4f, 0.4f) \
-		+ K->wheelr_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -0.5f, 0.5f);
+		+ K->wheelr_K[1] * constrain(My_State_Var.sd1 - 1.f * My_Robot.target->velocity, -2.f, 2.f);
 	
 	My_Straight_Leg_Model.r_theta_part = \
-	  K->wheelr_K[2] * constrain(My_State_Var.thetab, -0.6f, 0.6f) \
+	  K->wheelr_K[2] * My_State_Var.thetab \
 		+ K->wheelr_K[3] * My_State_Var.thetabd1;
 	
 	My_Straight_Leg_Model.r_phi_part = \

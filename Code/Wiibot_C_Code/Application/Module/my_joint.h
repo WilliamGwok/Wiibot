@@ -49,6 +49,8 @@ typedef struct Joint_struct_t
 	
 }Joint_t;
 
+extern Joint_t My_Joint[LEG_LIST];
+
 void My_Joint_Control(void);
 void My_Joint_Target_Process(void);
 void My_Joint_Torque_Cal(void);

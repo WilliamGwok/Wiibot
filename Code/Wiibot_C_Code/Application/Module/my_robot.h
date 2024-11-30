@@ -11,8 +11,11 @@
 #define STICK_DRIFT_THRESHOLD   10
 #define MAX_CHANNEL             500
 
-#define MAX_VELOCITY            0.55f
+#define MAX_VELOCITY            0.8f
 #define MAX_SPIN_VELOCITY       3.f
+
+#define A_INITIAL_ANGLE         0.26179f
+
 
 typedef struct Straight_Leg_Model_struct_t
 {

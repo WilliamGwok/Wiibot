@@ -142,9 +142,16 @@ Control = ctrb(A_b, B_b);
 r = rank(Control);
 disp(r);
 
+x1_ = 1 / 0.2^2;
+x2_ = 1 / 0.5^2;
+x3_ = 1 / 0.5^2;
+x4_ = 1 / 10^2;
+x5_ = 1 / 0.5^2;
+x6_ = 1 / 0.8^2;
 
-Q = double(diag([150 1 800 1 150 1]));
-R = double(diag([10 10]));
+
+Q = double(diag([20*x1_   1*x2_   50*x3_   1*x4_   30*x5_   1*x6_]))
+R = double(diag([20 20]));
 % Q = double(diag([80 1 30 1 10 1]));
 % R = double(diag([1.5 1.5]));
 sys = ss(A_b, B_b, C_a, D_a);
