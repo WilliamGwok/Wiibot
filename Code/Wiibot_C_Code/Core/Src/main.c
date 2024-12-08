@@ -112,6 +112,7 @@ int main(void)
   }
 	
 	CAN1_Init();
+	USART1_Init();
 	USART3_Init();
 	My_Device_Init();
   /* USER CODE END 2 */

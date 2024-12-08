@@ -9,10 +9,13 @@
 #include "config_uart.h"
 #include "string.h"
 #include "remote.h"
+#include "vision_protocol.h"
+
 int16_t channels[16];
 uint8_t data_playload[25];
 void USART1_rxDataHandler(uint8_t *rxBuf)
 {
+	Vision_Recieve_Data(rxBuf);
 }
 
 

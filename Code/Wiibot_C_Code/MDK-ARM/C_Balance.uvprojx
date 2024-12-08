@@ -1911,6 +1911,26 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Protocols</GroupName>
+          <Files>
+            <File>
+              <FileName>crc8.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\Protocol\crc8.c</FilePath>
+            </File>
+            <File>
+              <FileName>crc16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\Protocol\crc16.c</FilePath>
+            </File>
+            <File>
+              <FileName>vision_protocol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\Protocol\vision_protocol.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>

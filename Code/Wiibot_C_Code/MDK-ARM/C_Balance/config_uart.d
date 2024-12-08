@@ -37,3 +37,5 @@ c_balance\config_uart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.
 c_balance\config_uart.o: D:\MDK\ARM\ARMCC\Bin\..\include\string.h
 c_balance\config_uart.o: ../Application/Device/remote.h
 c_balance\config_uart.o: ../Core/Inc/main.h
+c_balance\config_uart.o: ../Application/Protocol/vision_protocol.h
+c_balance\config_uart.o: D:\MDK\ARM\ARMCC\Bin\..\include\stdbool.h

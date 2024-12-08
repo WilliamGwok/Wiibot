@@ -1,7 +1,7 @@
 Dependencies for Project 'C_Balance', Target 'C_Balance': (DO NOT MODIFY !)
 CompilerVersion: 5060183::V5.06 update 2 (build 183)::ARMCC
 F (startup_stm32f407xx.s)(0x67405F19)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I ../Core/Inc-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "STM32F407xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f407xx.lst --xref -o c_balance\startup_stm32f407xx.o --depend c_balance\startup_stm32f407xx.d)
-F (../Core/Src/main.c)(0x674096AD)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\main.o --omf_browse c_balance\main.crf --depend c_balance\main.d)
+F (../Core/Src/main.c)(0x6755485C)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\main.o --omf_browse c_balance\main.crf --depend c_balance\main.d)
 I (../Core/Inc/main.h)(0x659D27E5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x659D44E9)
@@ -328,7 +328,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x6581926B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6581926B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6581926B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6581926B)
-F (../Core/Src/stm32f4xx_it.c)(0x6740673F)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\stm32f4xx_it.o --omf_browse c_balance\stm32f4xx_it.crf --depend c_balance\stm32f4xx_it.d)
+F (../Core/Src/stm32f4xx_it.c)(0x6755498B)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\stm32f4xx_it.o --omf_browse c_balance\stm32f4xx_it.crf --depend c_balance\stm32f4xx_it.d)
 I (../Core/Inc/main.h)(0x659D27E5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x659D44E9)
@@ -1820,7 +1820,7 @@ I (../Application/Pack/ktech_motor.h)(0x673DCDEE)
 I (../Application/Driver/drv_can.h)(0x673DF5D6)
 I (../Application/Pack/math_support.h)(0x673DCDEE)
 F (..\Application\Config\config_mec.h)(0x673E02F9)()
-F (..\Application\Config\config_uart.c)(0x67404D1D)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\config_uart.o --omf_browse c_balance\config_uart.crf --depend c_balance\config_uart.d)
+F (..\Application\Config\config_uart.c)(0x67554EF9)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\config_uart.o --omf_browse c_balance\config_uart.crf --depend c_balance\config_uart.d)
 I (..\Application\Config\config_uart.h)(0x67404D1E)
 I (..\Application\Config\config.h)(0x673DCDEE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
@@ -1858,6 +1858,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6581926B)
 I (D:\MDK\ARM\ARMCC\include\string.h)(0x56FE42DE)
 I (../Application/Device/remote.h)(0x673E95F5)
 I (../Core/Inc/main.h)(0x659D27E5)
+I (../Application/Protocol/vision_protocol.h)(0x67554E86)
+I (D:\MDK\ARM\ARMCC\include\stdbool.h)(0x56FE42DC)
 F (..\Application\Device\dev_all.c)(0x674492A7)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\dev_all.o --omf_browse c_balance\dev_all.crf --depend c_balance\dev_all.d)
 I (..\Application\Device\dev_all.h)(0x673DCDEE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
@@ -2559,3 +2561,110 @@ I (../Application/Device/remote.h)(0x673E95F5)
 I (../Core/Inc/main.h)(0x659D27E5)
 I (../Application/Module/my_joint.h)(0x6749872F)
 I (../Application/Algo/pid.h)(0x6746D91E)
+F (..\Application\Protocol\crc8.c)(0x63235C34)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\crc8.o --omf_browse c_balance\crc8.crf --depend c_balance\crc8.d)
+I (..\Application\Protocol\crc8.h)(0x63235C34)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x659D44E9)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x6581926B)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x65819267)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h)(0x65819266)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x6581926B)
+I (D:\MDK\ARM\ARMCC\include\stdint.h)(0x56FE42DE)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x6581926B)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x6581926B)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x6581926B)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x6581926B)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x65819267)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x6581926B)
+I (D:\MDK\ARM\ARMCC\include\stddef.h)(0x56FE42DE)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6581926B)
+F (..\Application\Protocol\crc16.c)(0x63235C34)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\crc16.o --omf_browse c_balance\crc16.crf --depend c_balance\crc16.d)
+I (..\Application\Protocol\crc8.h)(0x63235C34)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x659D44E9)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x6581926B)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x65819267)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h)(0x65819266)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x6581926B)
+I (D:\MDK\ARM\ARMCC\include\stdint.h)(0x56FE42DE)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x6581926B)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x6581926B)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x6581926B)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x6581926B)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x65819267)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x6581926B)
+I (D:\MDK\ARM\ARMCC\include\stddef.h)(0x56FE42DE)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6581926B)
+I (D:\MDK\ARM\ARMCC\include\stdbool.h)(0x56FE42DC)
+F (..\Application\Protocol\vision_protocol.c)(0x67554E99)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\vision_protocol.o --omf_browse c_balance\vision_protocol.crf --depend c_balance\vision_protocol.d)
+I (..\Application\Protocol\vision_protocol.h)(0x67554E86)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x659D44E9)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x6581926B)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x65819267)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h)(0x65819266)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x6581926B)
+I (D:\MDK\ARM\ARMCC\include\stdint.h)(0x56FE42DE)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x6581926B)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x6581926B)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x6581926B)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x6581926B)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x65819267)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x6581926B)
+I (D:\MDK\ARM\ARMCC\include\stddef.h)(0x56FE42DE)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6581926B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6581926B)
+I (D:\MDK\ARM\ARMCC\include\stdbool.h)(0x56FE42DC)
+I (D:\MDK\ARM\ARMCC\include\string.h)(0x56FE42DE)
+I (..\Application\Protocol\crc16.h)(0x63235C34)
+I (..\Application\Protocol\crc8.h)(0x63235C34)
