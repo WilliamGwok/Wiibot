@@ -291,14 +291,29 @@ void My_Wheel_Send_Torque(float r_tor, float l_tor)
 //		can1_0x200_send_buff[0] = 0;
 //		
 //		can1_0x200_send_buff[1] = 0;
+		if(R_Sd.rx_info->torque >= -0.5f || L_Sd.rx_info->torque >= -0.5f)
+		{
+			My_Robot.target->velocity = 0.f;
+		
+		  My_Robot.target->distance = My_State_Var.s;
+		
+		  My_Robot.target->spin_rad = My_State_Var.phi;
+		
+		  My_Robot.target->spin_velocity = 0.f;
+			
+			can1_0x200_send_buff[0] = 0;
+		
+		  can1_0x200_send_buff[1] = 0;
+		}
 		
 		CAN1_Send_With_int16_to_uint8(0x1FF, can1_0x200_send_buff);
 	}
 	else
 	{
-		can1_0x200_send_buff[0] = 0;
+			can1_0x200_send_buff[0] = 0;
 		
-		can1_0x200_send_buff[1] = 0;
+		  can1_0x200_send_buff[1] = 0;
+		
 		CAN1_Send_With_int16_to_uint8(0x1FF, can1_0x200_send_buff);
 		
 		My_Robot.target->velocity = 0.f;

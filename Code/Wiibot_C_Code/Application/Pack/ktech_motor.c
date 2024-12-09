@@ -409,7 +409,7 @@ static void Raw_Current_to_Torque(Motor_Ktech_t *motor)
 		/*电流数值转为电流*/
 	  motor->rx_info->torque_current = ((float)motor->rx_info->torque_current_raw / 2048.f) * 33.f;
 		
-		motor->rx_info->torque = motor->rx_info->torque_current * _6012_TORQUE_CONSTANT * 8.f;
+		motor->rx_info->torque = motor->rx_info->torque_current * _6012_TORQUE_CONSTANT;
 	}
 }
 

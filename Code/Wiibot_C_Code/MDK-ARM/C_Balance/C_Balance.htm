@@ -3,7 +3,7 @@
 <title>Static Call Graph - [C_Balance\C_Balance.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image C_Balance\C_Balance.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Mon Dec 09 21:26:19 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Mon Dec 09 22:55:48 2024
 <BR><P>
 <H3>Maximum Stack Usage =        280 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1682,7 +1682,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[13b]"></a>My_Robot_Control</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, my_robot.o(i.My_Robot_Control))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = My_Robot_Control &rArr; My_Wheel_Send_Torque &rArr; CAN1_Send_With_int16_to_uint8 &rArr; CAN_SendData &rArr; HAL_CAN_AddTxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = My_Robot_Control &rArr; My_Wheel_Send_Torque &rArr; CAN1_Send_With_int16_to_uint8 &rArr; CAN_SendData &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;My_Wheel_Send_Torque
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;My_Vision_Data_Send
@@ -1790,8 +1790,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;My_Device_Init
 </UL>
 
-<P><STRONG><a name="[13f]"></a>My_Wheel_Send_Torque</STRONG> (Thumb, 116 bytes, Stack size 8 bytes, my_robot.o(i.My_Wheel_Send_Torque))
-<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = My_Wheel_Send_Torque &rArr; CAN1_Send_With_int16_to_uint8 &rArr; CAN_SendData &rArr; HAL_CAN_AddTxMessage
+<P><STRONG><a name="[13f]"></a>My_Wheel_Send_Torque</STRONG> (Thumb, 186 bytes, Stack size 24 bytes, my_robot.o(i.My_Wheel_Send_Torque))
+<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = My_Wheel_Send_Torque &rArr; CAN1_Send_With_int16_to_uint8 &rArr; CAN_SendData &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN1_Send_With_int16_to_uint8
 <LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_RM6020_Torque_to_Raw_Voltage
@@ -1908,7 +1908,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.constdata)
 </UL>
 <P><STRONG><a name="[81]"></a>Task_M</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, my_task.o(i.Task_M))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Task_M &rArr; My_Robot_Control &rArr; My_Wheel_Send_Torque &rArr; CAN1_Send_With_int16_to_uint8 &rArr; CAN_SendData &rArr; HAL_CAN_AddTxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = Task_M &rArr; My_Robot_Control &rArr; My_Wheel_Send_Torque &rArr; CAN1_Send_With_int16_to_uint8 &rArr; CAN_SendData &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;micros
@@ -3032,7 +3032,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Get_Info
 </UL>
 
-<P><STRONG><a name="[129]"></a>Raw_Current_to_Torque</STRONG> (Thumb, 170 bytes, Stack size 0 bytes, ktech_motor.o(i.Raw_Current_to_Torque))
+<P><STRONG><a name="[129]"></a>Raw_Current_to_Torque</STRONG> (Thumb, 162 bytes, Stack size 0 bytes, ktech_motor.o(i.Raw_Current_to_Torque))
 <BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Get_Info
 </UL>
 

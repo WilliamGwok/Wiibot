@@ -3,11 +3,17 @@
 
 void My_Joint_Phi4_Get(void);
 	
-Leg_Target_t L_Leg_Target;
+Leg_Target_t L_Leg_Target = 
+{
+	.joint_rad = 0.1f,
+};
 
 Leg_Measure_t L_Leg_Measure;
 
-Leg_Target_t R_Leg_Target;
+Leg_Target_t R_Leg_Target = 
+{
+	.joint_rad = 0.1f,
+};
 
 Leg_Measure_t R_Leg_Measure;
 
@@ -241,19 +247,8 @@ void My_Joint_Torque_Cal(void)
 	
 	
 	My_Joint_Roll_Torque_Cal();
-	
-	
-//	if(rc.info->status == DEV_ONLINE)
-//	{
-//		L_Sd.tx_info->torque = Leg_Speed_Pid[L_LEG].info->out;
-//	
-//	  L_Sd.single_set_torque(&L_Sd);
-//		
-//		R_Sd.tx_info->torque = Leg_Speed_Pid[R_LEG].info->out;
-//	
-//	  R_Sd.single_set_torque(&R_Sd);
-//	}
 }
+
 
 
 pid_info_t R_Leg_Roll = 
@@ -300,22 +295,6 @@ void My_Joint_Roll_Torque_Cal(void)
 	
 		if(rc.info->status == DEV_ONLINE)
 	{
-//		L_Sd.tx_info->torque = Leg_Roll_Speed_Pid[L_LEG].info->out + Leg_Speed_Pid[L_LEG].info->out;
-//	
-//	  L_Sd.single_set_torque(&L_Sd);
-//		
-//		R_Sd.tx_info->torque = Leg_Roll_Speed_Pid[R_LEG].info->out + Leg_Speed_Pid[R_LEG].info->out;
-//	
-//	  R_Sd.single_set_torque(&R_Sd);
-		
-//		R_Sd.tx_info->torque = Leg_Speed_Pid[R_LEG].info->out;
-//	
-//	  R_Sd.single_set_torque(&R_Sd);
-//		
-//		L_Sd.tx_info->torque = -Leg_Speed_Pid[L_LEG].info->out;
-//	
-//	  L_Sd.single_set_torque(&L_Sd);
-		
 		R_Sd.tx_info->torque = Leg_Roll_Pid[R_LEG].info->out + Leg_Speed_Pid[R_LEG].info->out;
 	
 	  R_Sd.single_set_torque(&R_Sd);
@@ -323,10 +302,64 @@ void My_Joint_Roll_Torque_Cal(void)
 		L_Sd.tx_info->torque =  Leg_Roll_Pid[L_LEG].info->out - Leg_Speed_Pid[L_LEG].info->out;
 	
 	  L_Sd.single_set_torque(&L_Sd);
-		
-		
-		
-		
 	}
 }
+
+
+//static void My_Jump_Target_Process(void)
+//{
+//  static int step = 0;
+//  
+//  static double org_tar = 0.f;
+//  
+//  double mea = (My_Joint[R_LEG].measure->phi4_rad + My_Joint[L_LEG].measure->phi4_rad) / 2.f;
+//  
+//  if(My_Balance.command->chassis->Jump_Flag == true)
+//  {
+//		if(step == 0)
+//    {
+//			org_tar = My_Chassis.target->leg_length;
+//      My_Chassis.target->leg_length = 0.36f;
+//      step++;
+//      My_Link_Var[R_Link].link_pid->length_cal->info->kp = 3000;
+//      My_Link_Var[L_Link].link_pid->length_cal->info->kp = 3000;
+//			My_Link_Var[R_Link].link_pid->length_cal->info->ki = 5;
+//			My_Link_Var[L_Link].link_pid->length_cal->info->ki = 5;
+//			
+//			My_Link_Var[R_Link].link_pid->length_cal->info->kd = 10000;
+//			My_Link_Var[L_Link].link_pid->length_cal->info->kd = 10000;
+//			
+//      My_Link_Var[R_Link].link_pid->length_cal->info->out_max = 3000;
+//      My_Link_Var[L_Link].link_pid->length_cal->info->out_max = 3000;
+//    }
+//    else if(step == 1 && mea > 0.355f)
+//    {
+//      My_Chassis.target->leg_length = 0.13f;
+//      step++;
+//      My_Link_Var[R_Link].link_pid->length_cal->info->kp = 3000;
+//      My_Link_Var[L_Link].link_pid->length_cal->info->kp = 3000;
+//			My_Link_Var[R_Link].link_pid->length_cal->info->ki = 10;
+//			My_Link_Var[L_Link].link_pid->length_cal->info->ki = 10;
+//      My_Link_Var[R_Link].link_pid->length_cal->info->out_max = 4000;
+//      My_Link_Var[L_Link].link_pid->length_cal->info->out_max = 4000;
+//    }
+//    else if(step == 2 && mea < 0.15f)
+//    {
+//      My_Chassis.target->leg_length = 0.13f;
+//			
+//			My_Chassis.target->leg_length = org_tar;
+//      step = 0;
+//      My_Balance.command->chassis->Jump_Flag = false;
+//      My_Link_Var[R_Link].link_pid->length_cal->info->kp = 700;
+//      My_Link_Var[L_Link].link_pid->length_cal->info->kp = 700;
+//      My_Link_Var[R_Link].link_pid->length_cal->info->out_max = 200;
+//      My_Link_Var[L_Link].link_pid->length_cal->info->out_max = 200;
+//			My_Link_Var[R_Link].link_pid->length_cal->info->ki = 0.8;
+//			My_Link_Var[L_Link].link_pid->length_cal->info->ki = 0.8;
+//			My_Link_Var[R_Link].link_pid->length_cal->info->kd = 40000;
+//			My_Link_Var[L_Link].link_pid->length_cal->info->kd = 40000;
+//    }
+//  }
+//  
+//}
 
