@@ -5,9 +5,11 @@
 #include "bmi.h"
 #include "remote.h"
 #include "my_joint.h"
+#include "vision_protocol.h"
 
 void My_Model_Output_Cal(void);
 void My_Wheel_Send_Torque(float r_tor, float l_tor);
+void My_Vision_Data_Send(void);
 
 Straight_Leg_Model_t My_Straight_Leg_Model;
 
@@ -56,6 +58,8 @@ void My_Robot_Control(void)
 	My_Robot_Update();
 	
 	My_Robot_Output_Cal();
+	
+	My_Vision_Data_Send();
 	
 	My_Wheel_Send_Torque(My_Straight_Leg_Model.R_Tw, My_Straight_Leg_Model.L_Tw);
 }
@@ -120,6 +124,7 @@ void My_Robot_RC_Value_Filt(void)
 		My_Robot.remote->ch3 = rc.base_info->ch3;
 	}
 }
+float test_dis_add = 0.f;
 
 //ch1 10~500 0.25m/s
 void My_Robot_Distance_Target_Process(void)
@@ -151,10 +156,20 @@ void My_Robot_Spin_Target_Process(void)
 	
 	My_Robot.target->spin_rad += My_Robot.target->spin_velocity * TIME_BASE;
 	
+	My_Robot.target->spin_rad += test_dis_add;
+	
+	test_dis_add = 0;
+	
 	My_Robot.target->spin_rad = My_Robot_Yaw_Target_Process(My_Robot.target->spin_rad);
 }
 
-
+void My_Vision_Data_Send(void)
+{
+	Vision_Tx_Info.yaw_angle = My_Posture.yaw;
+	
+	
+  Vision_Send_Data();
+}
 /*........................................LQR¿ØÖÆÆ÷²¿·Öbegin........................................*/
 
 float My_Yaw_Zero_Point_Process(float err);

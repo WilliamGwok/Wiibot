@@ -441,7 +441,7 @@ static void Torque_to_Raw_Current(Motor_Ktech_t *motor)
 	}
 	else if(motor->born_info->ktech_type == motor_6012)
 	{
-		motor->tx_info->torque_current = (motor->tx_info->torque / 8.f) / _6012_TORQUE_CONSTANT;//要算上减速比
+		motor->tx_info->torque_current = (motor->tx_info->torque) / _6012_TORQUE_CONSTANT;//要算上减速比
 		
 		motor->tx_info->torque_current = constrain(motor->tx_info->torque_current, -_6012_MAX_CURRENT, _6012_MAX_CURRENT);//最大电流限幅
 		

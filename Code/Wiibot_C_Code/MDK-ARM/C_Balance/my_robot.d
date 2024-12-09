@@ -57,3 +57,4 @@ c_balance\my_robot.o: ../Application/Device/remote.h
 c_balance\my_robot.o: ../Core/Inc/main.h
 c_balance\my_robot.o: ..\Application\Module\my_joint.h
 c_balance\my_robot.o: ../Application/Algo/pid.h
+c_balance\my_robot.o: ../Application/Protocol/vision_protocol.h

@@ -120,7 +120,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>?</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -270,6 +269,16 @@
           <WinNumber>1</WinNumber>
           <ItemText>Vision_Rx_Info,0x0A</ItemText>
         </Ww>
+        <Ww>
+          <count>23</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>test_dis_add</ItemText>
+        </Ww>
+        <Ww>
+          <count>24</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>test_len</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
@@ -286,6 +295,16 @@
           <count>2</count>
           <WinNumber>2</WinNumber>
           <ItemText>\\C_Balance\../Application/Module/my_joint.c\Leg_Speed_Pid</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>\\C_Balance\../Application/Module/my_joint.c\Leg_Length_Pid</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>\\C_Balance\../Application/Module/my_joint.c\Leg_Length_Pid[0].info-&gt;kp</ItemText>
         </Ww>
       </WatchWindow2>
       <Tracepoint>
@@ -1166,7 +1185,7 @@
 
   <Group>
     <GroupName>Algorithms</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1198,7 +1217,7 @@
 
   <Group>
     <GroupName>Packs</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1266,7 +1285,7 @@
 
   <Group>
     <GroupName>Modules</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

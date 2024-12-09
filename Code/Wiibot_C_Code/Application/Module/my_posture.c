@@ -5,7 +5,7 @@
 Posture_t My_Posture;
 
 
-float pitch_offset = -0.0f;
+float pitch_offset = -0.267f;
 
 void My_Posture_Update(void)
 {

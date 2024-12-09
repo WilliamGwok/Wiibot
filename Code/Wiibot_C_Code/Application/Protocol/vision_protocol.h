@@ -7,6 +7,7 @@
 typedef __packed struct
 {
 	uint8_t  			SOF;
+	uint8_t       mode;
 	uint8_t  			CRC8;
 	float    			yaw_angle;	 			// dataf_1
 	uint16_t 			CRC16;
