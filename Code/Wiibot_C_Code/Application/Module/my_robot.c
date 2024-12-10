@@ -288,9 +288,6 @@ void My_Wheel_Send_Torque(float r_tor, float l_tor)
 	
 	if(rc.info->status == DEV_ONLINE && My_Robot.imu_adapt_flag == true)
 	{
-//		can1_0x200_send_buff[0] = 0;
-//		
-//		can1_0x200_send_buff[1] = 0;
 		if(R_Sd.rx_info->torque >= -0.5f || L_Sd.rx_info->torque >= -0.5f)
 		{
 			My_Robot.target->velocity = 0.f;
@@ -305,6 +302,10 @@ void My_Wheel_Send_Torque(float r_tor, float l_tor)
 		
 		  can1_0x200_send_buff[1] = 0;
 		}
+		
+		//		can1_0x200_send_buff[0] = 0;
+    //		
+    //		can1_0x200_send_buff[1] = 0;
 		
 		CAN1_Send_With_int16_to_uint8(0x1FF, can1_0x200_send_buff);
 	}

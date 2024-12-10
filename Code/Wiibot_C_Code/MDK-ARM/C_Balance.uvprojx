@@ -1831,6 +1831,26 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Protocols</GroupName>
+          <Files>
+            <File>
+              <FileName>crc8.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\Protocol\crc8.c</FilePath>
+            </File>
+            <File>
+              <FileName>crc16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\Protocol\crc16.c</FilePath>
+            </File>
+            <File>
+              <FileName>vision_protocol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\Protocol\vision_protocol.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Algorithms</GroupName>
           <Files>
             <File>
@@ -1907,26 +1927,6 @@
               <FileName>my_task.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Application\Task\my_task.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Protocols</GroupName>
-          <Files>
-            <File>
-              <FileName>crc8.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Application\Protocol\crc8.c</FilePath>
-            </File>
-            <File>
-              <FileName>crc16.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Application\Protocol\crc16.c</FilePath>
-            </File>
-            <File>
-              <FileName>vision_protocol.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Application\Protocol\vision_protocol.c</FilePath>
             </File>
           </Files>
         </Group>

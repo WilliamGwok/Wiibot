@@ -64,6 +64,10 @@ typedef struct Robot_struct_t
 {
 	bool imu_adapt_flag;
 	
+	bool vision_flag;
+	
+	bool jump_flag;
+	
 	uint16_t imu_adapt_cnt;
 	
 	Robot_Remote_t *remote;
@@ -76,5 +80,8 @@ void My_Robot_Imu_Kp_Adapt(void);
 void My_Robot_RC_Value_Filt(void);
 void My_Robot_Distance_Target_Process(void);
 void My_Robot_Spin_Target_Process(void);
+void My_Jump_Target_Process(void);
+
+extern Robot_t My_Robot;
 
 #endif

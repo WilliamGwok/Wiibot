@@ -52,3 +52,4 @@ c_balance\my_joint.o: ../Application/Device/remote.h
 c_balance\my_joint.o: ../Core/Inc/main.h
 c_balance\my_joint.o: ../Application/Config/config_mec.h
 c_balance\my_joint.o: ../Application/Algo/pid.h
+c_balance\my_joint.o: ..\Application\Module\my_robot.h

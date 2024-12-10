@@ -60,6 +60,9 @@
 "c_balance\remote.o"
 "c_balance\sd_motor.o"
 "c_balance\wheel_motor.o"
+"c_balance\crc8.o"
+"c_balance\crc16.o"
+"c_balance\vision_protocol.o"
 "c_balance\lqr.o"
 "c_balance\pid.o"
 "c_balance\ktech_motor.o"
@@ -72,9 +75,6 @@
 "c_balance\my_robot.o"
 "c_balance\my_state_var.o"
 "c_balance\my_task.o"
-"c_balance\crc8.o"
-"c_balance\crc16.o"
-"c_balance\vision_protocol.o"
 --strict --scatter "C_Balance\C_Balance.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

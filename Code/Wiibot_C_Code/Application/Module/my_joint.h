@@ -56,5 +56,6 @@ void My_Joint_Target_Process(void);
 void My_Joint_Torque_Cal(void);
 float Joint_Double_PID_Cal(pid_t* pid_out, pid_t* pid_in);
 void My_Joint_Roll_Torque_Cal(void);
+void My_Jump_Flag_Detect(void);
 
 #endif
