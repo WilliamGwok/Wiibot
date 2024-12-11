@@ -16,7 +16,7 @@ typedef __packed struct
 typedef __packed struct
 {
 	uint8_t			  SOF;
-	uint8_t       mode;           // datau8_1
+	uint8_t       mode;           //0 ¾²Ö¹ 1 Ç°½ø 2 ºóÍË
 	uint8_t 			CRC8;
 	float   			yaw_angle;    // dataf_1
 	uint16_t 			CRC16;

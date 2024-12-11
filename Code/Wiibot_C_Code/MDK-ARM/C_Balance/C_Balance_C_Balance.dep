@@ -1858,7 +1858,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6581926B)
 I (D:\MDK\ARM\ARMCC\include\string.h)(0x56FE42DE)
 I (../Application/Device/remote.h)(0x673E95F5)
 I (../Core/Inc/main.h)(0x659D27E5)
-I (../Application/Protocol/vision_protocol.h)(0x67555146)
+I (../Application/Protocol/vision_protocol.h)(0x6759315C)
 I (D:\MDK\ARM\ARMCC\include\stdbool.h)(0x56FE42DC)
 F (..\Application\Device\dev_all.c)(0x674492A7)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\dev_all.o --omf_browse c_balance\dev_all.crf --depend c_balance\dev_all.d)
 I (..\Application\Device\dev_all.h)(0x673DCDEE)
@@ -2096,7 +2096,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6581926B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6581926B)
 I (D:\MDK\ARM\ARMCC\include\stdbool.h)(0x56FE42DC)
 F (..\Application\Protocol\vision_protocol.c)(0x67555134)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\vision_protocol.o --omf_browse c_balance\vision_protocol.crf --depend c_balance\vision_protocol.d)
-I (..\Application\Protocol\vision_protocol.h)(0x67555146)
+I (..\Application\Protocol\vision_protocol.h)(0x6759315C)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x659D44E9)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x6581926B)
@@ -2386,8 +2386,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x6581926B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6581926B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6581926B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6581926B)
-F (..\Application\Module\my_joint.c)(0x6757CF96)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\my_joint.o --omf_browse c_balance\my_joint.crf --depend c_balance\my_joint.d)
-I (..\Application\Module\my_joint.h)(0x6757CE1C)
+F (..\Application\Module\my_joint.c)(0x67597480)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\my_joint.o --omf_browse c_balance\my_joint.crf --depend c_balance\my_joint.d)
+I (..\Application\Module\my_joint.h)(0x6759725B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x659D44E9)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x6581926B)
@@ -2439,7 +2439,7 @@ I (../Application/Device/remote.h)(0x673E95F5)
 I (../Core/Inc/main.h)(0x659D27E5)
 I (../Application/Config/config_mec.h)(0x673E02F9)
 I (../Application/Algo/pid.h)(0x6746D91E)
-I (..\Application\Module\my_robot.h)(0x6757B052)
+I (..\Application\Module\my_robot.h)(0x67592F18)
 F (..\Application\Module\my_posture.c)(0x6755600F)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\my_posture.o --omf_browse c_balance\my_posture.crf --depend c_balance\my_posture.d)
 I (..\Application\Module\my_posture.h)(0x673DFF3C)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
@@ -2489,8 +2489,8 @@ I (../Application/Pack/math_support.h)(0x673DCDEE)
 I (../Application/Task/INS_task.h)(0x654C4DE2)
 I (../Application/Config/struct_typedef.h)(0x653E1E2D)
 I (../Application/Device/imu.h)(0x67406A5F)
-F (..\Application\Module\my_robot.c)(0x6757ADF7)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\my_robot.o --omf_browse c_balance\my_robot.crf --depend c_balance\my_robot.d)
-I (..\Application\Module\my_robot.h)(0x6757B052)
+F (..\Application\Module\my_robot.c)(0x67597492)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\my_robot.o --omf_browse c_balance\my_robot.crf --depend c_balance\my_robot.d)
+I (..\Application\Module\my_robot.h)(0x67592F18)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x659D44E9)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x6581926B)
@@ -2545,9 +2545,9 @@ I (../Application/Device/IMU/bmi.h)(0x67448E1F)
 I (D:\MDK\ARM\ARMCC\include\math.h)(0x56FE42D6)
 I (../Application/Device/remote.h)(0x673E95F5)
 I (../Core/Inc/main.h)(0x659D27E5)
-I (..\Application\Module\my_joint.h)(0x6757CE1C)
+I (..\Application\Module\my_joint.h)(0x6759725B)
 I (../Application/Algo/pid.h)(0x6746D91E)
-I (../Application/Protocol/vision_protocol.h)(0x67555146)
+I (../Application/Protocol/vision_protocol.h)(0x6759315C)
 F (..\Application\Module\my_state_var.c)(0x6745B48C)(--c99 -c --cpu Cortex-M4.fp.sp -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application/Device/IMU -I ../Application/Support -I ../Application/Device -I ../Drivers/CMSIS/DSP/PrivateInclude -I ../Drivers/CMSIS/DSP/Include -I ../Application/Driver -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Application/Config -I ../Application/Module -I ../Application/Protocol -I ../Application/Task -I ../Application/Pack -I ../Application/Algo-I.\RTE\_C_Balance-ID:\MDK\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1U" -DARM_MATH_CM4 -D__CC_ARM -D__TARGET_FPU_VFP-o c_balance\my_state_var.o --omf_browse c_balance\my_state_var.crf --depend c_balance\my_state_var.d)
 I (..\Application\Module\my_state_var.h)(0x673EA27F)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6581926B)
@@ -2650,7 +2650,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x6581926D
 I (../Application/Driver/drv_haltick.h)(0x63235C34)
 I (../Application/Device/imu_pwm.h)(0x659D354A)
 I (../Application/Config/struct_typedef.h)(0x653E1E2D)
-I (../Application/Module/my_robot.h)(0x6757B052)
+I (../Application/Module/my_robot.h)(0x67592F18)
 I (../Application/Module/my_posture.h)(0x673DFF3C)
 I (../Application/Device/dev_all.h)(0x673DCDEE)
 I (../Application/Pack/motor.h)(0x673DCDEE)
@@ -2668,5 +2668,5 @@ I (../Application/Task/INS_task.h)(0x654C4DE2)
 I (../Application/Config/config_mec.h)(0x673E02F9)
 I (../Application/Device/remote.h)(0x673E95F5)
 I (../Core/Inc/main.h)(0x659D27E5)
-I (../Application/Module/my_joint.h)(0x6757CE1C)
+I (../Application/Module/my_joint.h)(0x6759725B)
 I (../Application/Algo/pid.h)(0x6746D91E)

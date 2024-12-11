@@ -38,6 +38,8 @@ void My_Robot_Update(void)
 	
 	My_Robot_RC_Value_Filt();
 	
+	My_Vision_Mode_Detect();
+	
 	My_Robot_Distance_Target_Process();
 	
 	My_Robot_Spin_Target_Process();
@@ -129,7 +131,25 @@ float test_dis_add = 0.f;
 //ch1 10~500 0.25m/s
 void My_Robot_Distance_Target_Process(void)
 {
-	My_Robot.target->velocity = ((float)My_Robot.remote->ch1 / MAX_CHANNEL) * MAX_VELOCITY;
+	if(My_Robot.vision_flag != true)
+	{
+		My_Robot.target->velocity = ((float)My_Robot.remote->ch1 / MAX_CHANNEL) * MAX_VELOCITY;
+	}
+	else
+	{
+		if(Vision_Rx_Info.mode == 0)
+		{
+			My_Robot.target->velocity = 0;
+		}
+		else if(Vision_Rx_Info.mode == 1)
+		{
+			My_Robot.target->velocity = 0.2f;
+		}
+		else if(Vision_Rx_Info.mode == 2)
+		{
+			My_Robot.target->velocity = -0.2f;
+		}
+	}
 	
 	My_Robot.target->distance += My_Robot.target->velocity * TIME_BASE;
 }
@@ -152,15 +172,37 @@ float My_Robot_Yaw_Target_Process(float target)
 //ch0
 void My_Robot_Spin_Target_Process(void)
 {
-	My_Robot.target->spin_velocity = -((float)My_Robot.remote->ch0 / MAX_CHANNEL) * MAX_SPIN_VELOCITY;
+	if(My_Robot.vision_flag != true)
+	{
+		My_Robot.target->spin_velocity = -((float)My_Robot.remote->ch0 / MAX_CHANNEL) * MAX_SPIN_VELOCITY;
 	
-	My_Robot.target->spin_rad += My_Robot.target->spin_velocity * TIME_BASE;
-	
-	My_Robot.target->spin_rad += test_dis_add;
-	
-	test_dis_add = 0;
-	
+	  My_Robot.target->spin_rad += My_Robot.target->spin_velocity * TIME_BASE;
+	}
+	else
+	{
+		if(Vision_Rx_Info.mode == 3)
+		{
+			
+			
+			My_Robot.target->spin_rad = Vision_Rx_Info.yaw_angle;
+			
+			if((My_Robot.target->spin_rad - My_State_Var.phi) > 0)
+			{
+				My_Robot.target->spin_velocity = 1.5f;
+			}
+			else if((My_Robot.target->spin_rad - My_State_Var.phi) < 0)
+			{
+				My_Robot.target->spin_velocity = -1.5f;
+			}
+			else
+			{
+				My_Robot.target->spin_velocity = 0.f;
+			}
+		}
+	}
+
 	My_Robot.target->spin_rad = My_Robot_Yaw_Target_Process(My_Robot.target->spin_rad);
+	
 }
 
 void My_Vision_Data_Send(void)
@@ -169,6 +211,23 @@ void My_Vision_Data_Send(void)
 	
 	
   Vision_Send_Data();
+}
+
+void My_Vision_Mode_Detect(void)
+{
+	static int16_t s2_last = 0;
+	
+	if(s2_last != 0 && s2_last != rc.base_info->s2.value && rc.base_info->s2.value == 1)
+	{
+		My_Robot.vision_flag = true;
+	}
+	
+	if(rc.base_info->s2.value != 1)
+	{
+		My_Robot.vision_flag = false;
+	}
+	
+	s2_last = rc.base_info->s2.value;
 }
 /*........................................LQR¿ØÖÆÆ÷²¿·Öbegin........................................*/
 
@@ -324,6 +383,8 @@ void My_Wheel_Send_Torque(float r_tor, float l_tor)
 		My_Robot.target->spin_rad = My_State_Var.phi;
 		
 		My_Robot.target->spin_velocity = 0.f;
+		
+		My_Robot.vision_flag = false;
 	}
 }
 

@@ -18,7 +18,7 @@ typedef enum
 }leg_list_e;
 
 #define R_JOINT_ORG_ANGLE     0.63f
-#define L_JOINT_ORG_ANGLE     3.54f;
+#define L_JOINT_ORG_ANGLE     2.79f;
 
 #define JOINT_RAD_TAR_MAX     0.7f
 #define JOINT_RAD_SPEED_MAX   0.35f

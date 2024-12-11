@@ -81,6 +81,7 @@ void My_Robot_RC_Value_Filt(void);
 void My_Robot_Distance_Target_Process(void);
 void My_Robot_Spin_Target_Process(void);
 void My_Jump_Target_Process(void);
+void My_Vision_Mode_Detect(void);
 
 extern Robot_t My_Robot;
 

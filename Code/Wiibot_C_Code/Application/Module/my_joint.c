@@ -5,14 +5,14 @@ void My_Joint_Phi4_Get(void);
 	
 Leg_Target_t L_Leg_Target = 
 {
-	.joint_rad = 0.1f,
+	.joint_rad = 0.2f,
 };
 
 Leg_Measure_t L_Leg_Measure;
 
 Leg_Target_t R_Leg_Target = 
 {
-	.joint_rad = 0.1f,
+	.joint_rad = 0.2f,
 };
 
 Leg_Measure_t R_Leg_Measure;
@@ -273,7 +273,7 @@ void My_Joint_Roll_Torque_Cal(void)
 	
 	  R_Sd.single_set_torque(&R_Sd);
 		
-		L_Sd.tx_info->torque =  Leg_Roll_Pid[L_LEG].info->out - Leg_Speed_Pid[L_LEG].info->out;
+		L_Sd.tx_info->torque =  -( Leg_Speed_Pid[L_LEG].info->out) + Leg_Roll_Pid[L_LEG].info->out;
 	
 	  L_Sd.single_set_torque(&L_Sd);
 	}
