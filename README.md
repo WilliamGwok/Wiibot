@@ -39,19 +39,19 @@
 
 对于驱动轮，有：
 
-$$
+$
 m_w \ddot{x}_l = N_{fl} - N_{l} \tag{1}
-$$
+$
 
-$$
+$
 \frac{I_w \ddot{x}_l}{R} = T_l - N_{fl} R \tag{2}
-$$
+$
 
 对于摆杆，有：
 
-$$
+$
 m_b \ddot{x}_b = N_{fl} + N_{fr} \tag{3}
-$$
+$
 
 $$
 m_b \ddot{y}_b = P_r + P_l - m_b g \tag{4}
