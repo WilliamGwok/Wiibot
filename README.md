@@ -41,6 +41,7 @@
 $$
 m_w \ddot{x}_l = N_{fl} - N_l
 $$
+
 $$
 I_w \frac{\ddot{x}_l}{R} = T_l - N_{fl}R
 $$
@@ -49,9 +50,11 @@ $$
 $$
 m_b \ddot{x}_b = N_{fl} + N_{fr}
 $$
+
 $$
 m_b \ddot{y}_b = P_r + P_l - m_b g
 $$
+
 $$
 I_b \ddot{\theta}_b = (P_r + P_l)L \sin \theta_b - (N_r + N_l)L \cos \theta_b - (T_r + T_l)
 $$
