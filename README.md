@@ -37,34 +37,36 @@
 ## 经典力学分析
 ## 1.2 经典力学分析
 
-### 对驱动轮，有：
+对于驱动轮，有：
+
 $$
-m_\omega(x_i) \ddot{x}_i = N_{fi} - N_i
+m_w \ddot{x}_l = N_{fl} - N_{l} \tag{1}
 $$
 
 $$
-\frac{I_\omega(x_i) \ddot{x}_i}{R} = T_i - N_{fi} R
+\frac{I_w \ddot{x}_l}{R} = T_l - N_{fl} R \tag{2}
 $$
 
-
-
-### 对摆杆，有：
-$$
-m_b \ddot{x}_b = N_{fl} + N_{fr}
-$$
+对于摆杆，有：
 
 $$
-m_b \ddot{y}_b = P_r + P_l - m_b g
+m_b \ddot{x}_b = N_{fl} + N_{fr} \tag{3}
 $$
 
 $$
-I_b \ddot{\theta}_b = (P_r + P_l)L \sin \theta_b - (N_r + N_l)L \cos \theta_b - (T_r + T_l)
+m_b \ddot{y}_b = P_r + P_l - m_b g \tag{4}
 $$
 
-### 对整车，有：
 $$
-I_z \ddot{\phi} = \frac{D}{2}(N_l - N_r)
+I_b \ddot{\theta}_b = (P_r + P_l)L \sin\theta_b - (N_r + N_l)L \cos\theta_b - (T_r + T_l) \tag{5}
 $$
+
+对于整车，有：
+
+$$
+I_z \ddot{\phi} = \frac{D}{2}(N_l - N_r) \tag{6}
+$$
+
 
 
 
