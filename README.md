@@ -38,13 +38,10 @@
 ## 1.2 经典力学分析
 
 ### 对驱动轮，有：
-$$
-m_w \ddot{x}_l = N_{fl} - N_l
-$$
+$$m_w \ddot{x}_l = N_{fi} - N_i$$
 
-$$
-I_w \frac{\ddot{x}_l}{R} = T_l - N_{fl}R
-$$
+$$\frac{I_w \ddot{x}_l}{R} = T_i - N_{fi} R$$
+
 
 ### 对摆杆，有：
 $$
