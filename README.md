@@ -39,12 +39,13 @@
 
 ### 对驱动轮，有：
 $$
-m_w \ddot{x}_l = N_{fi} - N_i
+m_\omega(x_i) \ddot{x}_i = N_{fi} - N_i
 $$
 
 $$
-\frac{I_w \ddot{x}_l}{R} = T_i - N_{fi} R
+\frac{I_\omega(x_i) \ddot{x}_i}{R} = T_i - N_{fi} R
 $$
+
 
 
 ### 对摆杆，有：
