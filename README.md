@@ -105,7 +105,7 @@ $$
 其中，该PID 控制器的内外环参数如下所示：  
 
 $$
-\begin{array}{l}{{K p=100,\qquad K i=0.5,\qquad I n t e r g r a l_{m a x}=10,\qquad O u t_{m a x}=30;}}\\ {{\mathrm{}}}\\ {{\mathrm{}\kappa p=0.4,\qquad K i=0.05,\qquad I n t e r g r a l_{m a x}=5,\qquad O u t_{m a x}=8;}}\end{array}
+\begin{array}{l}{{K p=100,\qquad K i=0.5,\qquad I n t e r g r a l_{m a x}=10,\qquad O u t_{m a x}=30;}}\\ {{\mathrm{}}}\\ {{\mathrm{}\k p=0.4,\qquad K i=0.05,\qquad I n t e r g r a l_{m a x}=5,\qquad O u t_{m a x}=8;}}\end{array}
 $$
 
 基于关节电机的扭矩参数，额定扭矩为 $6N\cdot m$ ，峰值扭矩为 $16N\cdot m$ ，设置常态下速度环的最大速出为8，即 $8N\cdot m$ 。  
