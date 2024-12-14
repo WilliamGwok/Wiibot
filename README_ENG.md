@@ -1,86 +1,84 @@
 # Wiibot
 
-## 前言
+## Preface
 <div align="center">
 <img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/Robot_Design.png" width="710px">
 </div>
 <br>
-<p align="center">本项目是选修机器人控制课程的课程设计，主要研究平衡车的控制与设计。该项目与先前的RP_Balance项目相似，但采用了不同的腿部构型，并保留了测试数据以支持研究分析。</p>
-<p align="center">机器人机械部分由RobotPilots实验室的同事ZJH负责，视觉识别部分由ZZ负责。</p>
+<p align="center">This project is part of the coursework for the Robotics Control course, focusing on the control and design of a balance robot. It is similar to the previous RP_Balance project but adopts a different leg configuration and retains more test data to support research and analysis.</p>
+<p align="center">The mechanical components of the robot were designed by ZJH from the RobotPilots lab, while the visual recognition module was handled by ZZ.</p>
 
-## 电控硬件清单
-| 名称                        | 部分技术参数                                                                 | 功能                                    | 数量 |
-|-----------------------------|-----------------------------------------------------------------------------|---------------------------------------|------|
-| Robomaster 开发板 C 型       | 输入电压: 8-28 V<br>IMU+E-compass: 1 个<br>CAN 总线接口: CAN1: 2 个; CAN2: 2 个<br>UART 接口: 2 个<br>SPI 接口: 1 个 | 搭载高性能芯片，支持机器人控制频率达 1000Hz，同时负责电机通讯、遥控信息接收及视觉模块通信。 | 1    |
-| 迈克 mc6mini 遥控器航模接收机 | 通道数量: 6<br>频率范围: 2401-2478 MHz<br>控制范围: >800 m                  | 发送机器人平移、旋转、跳跃等动作指令。 | 1    |
-| 领控 MG6012E-i8v3 伺服电机   | 额定电压: 48 V<br>空载转速: 310 rpm<br>额定扭矩: 6 Nm<br>峰值扭矩: 16 Nm      | 控制机器人腿长及机体横滚角。             | 2    |
-| Robomater GM6020 电机        | 额定电压: 24 V<br>空载转速: 320 rpm<br>额定扭矩: 1.2 Nm<br>峰值扭矩: 1.4 Nm  | 控制机器人驱动轮，实现平移、旋转及平衡。 | 2    |
-| 经纬 M600 系列 TB47S 智能飞行电池 | 容量: 4500 mAh<br>电压: 22.2 V                                           | 提供整套机器人的电控系统供电。         | 1    |
-| DC-DC 可调电源模块            | 输入电压: 7-32 V<br>输出电压: 0-28 V<br>恒流范围: 0.2-1.2 A               | 为视觉NUC提供稳定的工作电压与电流。     | 1    |
+## Electronic Hardware List
+| Name                        | Technical Specifications                                                       | Function                                     | Quantity |
+|-----------------------------|--------------------------------------------------------------------------------|---------------------------------------------|----------|
+| Robomaster Development Board Type C | Input Voltage: 8-28 V<br>IMU+E-compass: 1<br>CAN Bus: CAN1: 2 ports; CAN2: 2 ports<br>UART Ports: 2<br>SPI Port: 1 | Supports high-performance chip with control frequency up to 1000Hz; handles motor communication, remote control signal reception, and vision module communication. | 1        |
+| Mike MC6mini Remote Control Receiver | Channels: 6<br>Frequency Range: 2401-2478 MHz<br>Control Range: >800 m   | Sends commands for robot translation, rotation, and jumping actions. | 1        |
+| Lingkong MG6012E-i8v3 Servo Motor   | Rated Voltage: 48 V<br>No-load Speed: 310 rpm<br>Rated Torque: 6 Nm<br>Peak Torque: 16 Nm | Controls leg length and robot body roll angle.             | 2        |
+| Robomater GM6020 Motor        | Rated Voltage: 24 V<br>No-load Speed: 320 rpm<br>Rated Torque: 1.2 Nm<br>Peak Torque: 1.4 Nm | Drives the robot wheels for translation, rotation, and balance. | 2        |
+| DJI M600 TB47S Intelligent Flight Battery | Capacity: 4500 mAh<br>Voltage: 22.2 V                                       | Provides power for the entire robot control system.         | 1        |
+| DC-DC Adjustable Power Module  | Input Voltage: 7-32 V<br>Output Voltage: 0-28 V<br>Constant Current Range: 0.2-1.2 A | Supplies stable voltage and current to the vision NUC.     | 1        |
 
-## 文件介绍
+## File Overview
 
-| 文件名 | 功能 | 文件链接 |
-|---|---|---|
-| Code | 包括MATLAB代码（建模求解、控制器设计、增益矩阵拟合、数据绘制）和实车代码（硬件驱动、通讯协议、模块控制与逻辑控制）。 | [CODE](https://github.com/WilliamGwok/Wiibot/tree/main/Code) |
-| Display_Files | 机械、电控、视觉课程报告及演示文件。 | [DISPLAY](https://github.com/WilliamGwok/Wiibot/tree/main/Disply_Files) |
-| Mec | 包含机器人机械设计图纸。 | [MEC](https://github.com/WilliamGwok/Wiibot/tree/main/Mec/balance) |
-| Simulation | Webots平台的机器人仿真模型*。 | [SIM](https://github.com/WilliamGwok/Wiibot/tree/main/Simulation/webots) |
-| Test_Video | 包含实车测试图片及视频文件。 | [VIDEO](https://github.com/WilliamGwok/Wiibot/tree/main/Test_Video) |
+| Filename       | Function                                                         | File Link                                                                                      |
+|----------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Code           | Includes MATLAB code (modeling, controller design, gain fitting, data plotting) and real robot code (hardware drivers, communication protocols, module control, and logic control). | [CODE](https://github.com/WilliamGwok/Wiibot/tree/main/Code)                                 |
+| Display_Files  | Reports and presentation files on mechanics, electronics, and vision. | [DISPLAY](https://github.com/WilliamGwok/Wiibot/tree/main/Disply_Files)                      |
+| Mec            | Contains mechanical design drawings of the robot.                | [MEC](https://github.com/WilliamGwok/Wiibot/tree/main/Mec/balance)                           |
+| Simulation     | Robot simulation models for the Webots platform.*                | [SIM](https://github.com/WilliamGwok/Wiibot/tree/main/Simulation/webots)                     |
+| Test_Video     | Includes real robot test images and videos.                      | [VIDEO](https://github.com/WilliamGwok/Wiibot/tree/main/Test_Video)                          |
 
-*由于导入STL文件到Webots平台较为复杂，简化模型后仿真世界仍难以正常运行。最终仅验证了机器人维持平衡的功能。
+*Due to the complexity of importing STL files into the Webots platform, the simplified model still struggled to function properly in the simulation environment. Only balance maintenance was verified.
 
-## 实车测试
+## Real Robot Tests
 
-对整车控制器性能进行了测试与分析。除腿长控制器和横滚角控制器的测试外，其他测试均在固定腿长的条件下进行。对应的增益矩阵K如下，所有数据通过J-Scope测量，并使用MATLAB绘制：
+The performance of the overall controller was tested and analyzed. Except for the leg length controller and roll angle controller tests, other tests were conducted under fixed leg length conditions. The corresponding gain matrix K is shown below. All data was measured with J-Scope and plotted using MATLAB:
 
 $$
 K={\left[\begin{array}{l l l l l l}{-3.693}&{-3.287}&{-8.559}&{-0.591}&{3.693}&{0.369; }\\ {-3.693}&{-3.287}&{-8.559}&{-0.591}&{-3.693}&{-0.369}\end{array}\right]}
 $$
 
-### 平衡车位移、偏航角静态响应及俯仰角变化
+### Balance Robot Displacement, Yaw Angle Static Response, and Pitch Angle Variation
 
-在静止状态下，输入幅值为0.4的阶跃信号，测试机器人位移响应及俯仰角变化，结果如图1所示。
+In a stationary state, an input step signal with an amplitude of 0.4 was applied to test the robot's displacement response and pitch angle variation. The results are shown in Figure 1.
 
 <div align="center">
 <img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img1.png" width="710px">
 </div>
 <br>
-<p align="center">图1 机器人位移阶跃响应及其俯仰角变化</p>
+<p align="center">Figure 1 Displacement Step Response and Pitch Angle Variation</p>
 
-经测量，位移响应特性如下：
+The measured displacement response characteristics are as follows:
 
-- 峰值时间 $T_{P}$：1.731s
-- 超调量 $\upsigma\%$：17\%
-- 调节时间 $T_{S}$（5%误差下）：2.542s
+- Peak Time $T_{P}$: 1.731s
+- Overshoot $\upsigma\%$: 17%
+- Settling Time $T_{S}$ (within 5% error): 2.542s
 
+During the displacement response, the maximum pitch angle was 0.219 rad (approximately 12.549 degrees).
 
-位移响应过程中，机器人最大俯仰角为0.219 rad（约12.549度）。
-
-在静止状态下，输入幅值为1.579（约90度）的偏航角阶跃信号，测试偏航角响应及俯仰角变化，结果如图2所示。
+Under stationary conditions, an input yaw step signal with an amplitude of 1.579 (approximately 90 degrees) was applied to test the yaw response and pitch angle variation. The results are shown in Figure 2.
 
 <div align="center">
 <img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img2.png" width="710px">
 </div>
 <br>
-<p align="center">图2 机器人偏航角阶跃响应及其俯仰角变化</p>
+<p align="center">Figure 2 Yaw Step Response and Pitch Angle Variation</p>
 
-偏航角响应特性如下：
+Yaw response characteristics are as follows:
 
-- 峰值时间 $T_{P}$：0.477s
+- Peak Time $T_{P}$: 0.477s
 
-- 超调量 $\upsigma\%$：1.6\%
+- Overshoot $\upsigma\%$: 1.6%
 
-- 调节时间 $T_{S}$（5%误差下）：0.385s
+- Settling Time $T_{S}$ (within 5% error): 0.385s
 
+During yaw trajectory tracking, the pitch angle oscillated slightly within 0.104 rad.
 
-偏航角轨迹跟踪过程中，俯仰角在0.104 rad内产生小幅度震荡。
+### Balance Robot Leg Length and Body Roll Angle Response
 
-### 平衡车腿长及机体横滚角响应
+A dual-loop PID controller was used for leg length control. When a step signal with an amplitude of 0.3 was applied, the outer position loop and inner velocity loop responses are shown in Figure 3.
 
-采用双环PID控制器对腿长进行控制。输入幅值为0.3的阶跃信号，位置外环与速度内环响应如图3所示。
-
-控制器参数如下：
+Controller parameters:
 
 $$
 \begin{array}{l}{{K p=100,\qquad K i=0.5,\qquad I n t e r g r a l_{m a x}=10,\qquad O u t_{m a x}=30;}}\\ {{\mathrm{}}}\\ {{\mathrm{}\kappa p=0.4,\qquad K i=0.05,\qquad I n t e r g r a l_{m a x}=5,\qquad O u t_{m a x}=8;}}\end{array}
@@ -90,55 +88,44 @@ $$
 <img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img3.png" width="710px">
 </div>
 <br>
-<p align="center">图3 机器人腿长双环控制器响应</p>
+<p align="center">Figure 3 Leg Length Dual-Loop Controller Response</p>
 
-再次输入最大腿长阶跃信号，响应如图4所示。
+When the maximum leg length step signal was applied, the response is shown in Figure 4.
 
 <div align="center">
 <img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img4.png" width="710px">
 </div>
 <br>
-<p align="center">图4 机器人腿长最大阶跃响应</p>
+<p align="center">Figure 4 Maximum Leg Length Step Response</p>
 
-经测量，腿长响应特性如下：
+The measured leg length response characteristics are as follows:
 
-- 峰值时间 $T_{P}$：0.29s
+- Peak Time $T_{P}$: 0.29s
 
-- 超调量 $\upsigma\%$：6.07\%
+- Overshoot $\upsigma\%$: 6.07%
 
-- 调节时间 $T_{S}$（2%误差下）：0.46s
+- Settling Time $T_{S}$ (within 2% error): 0.46s
 
-
-横滚角响应通过单侧上坡动作*体现，其横滚角及左右腿腿长变化如图5所示。
+The roll angle response was demonstrated through a single-side uphill motion*, with the roll angle and left/right leg length variations shown in Figure 5.
 
 <div align="center">
 <img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img5.png" width="710px">
 </div>
 <br>
-<p align="center">图5 单侧上坡时横滚角与腿长变化</p>
+<p align="center">Figure 5 Roll Angle and Leg Length Variation During Single-Side Uphill</p>
 
-*上坡过程持续2s，坡长约0.8m，坡度9 °
+*The uphill process lasted 2 seconds, with a slope length of approximately 0.8m and a slope angle of 9°.
 
-### 离地检测与跳跃动作
+### Ground Detection and Jumping Motion
 
-通过监测关节扭矩检测离地状态。图6展示了两次离地的关节扭矩输出曲线，设置离地阈值为0.5Nm，经测试可靠性较高。
+Ground detection was achieved by monitoring joint torque. Figure 6 shows the torque curves for two ground detections. The threshold was set at 0.5 Nm, with high reliability observed during tests.
 
 <div align="center">
 <img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img6.png" width="710px">
 </div>
 <br>
-<p align="center">图6 离地检测扭矩曲线</p>
+<p align="center">Figure 6 Torque Curves for Ground Detection</p>
 
-通过给腿长输入大幅脉冲信号实现跳跃。平均跳跃高度约为0.1m，受限于电机性能，跳跃高度尚有改进空间。跳跃时的控制器输出如图7和图8所示。
+Jumping was implemented by inputting a large pulse signal to the leg length. The average jump height was approximately 0.1m. Limited by motor performance, the jump height has room for improvement. The controller outputs during jumping are shown in Figures 7 and 8.
 
-<div align="center">
-<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img7.jpeg" width="710px">
-</div>
-<br>
-<p align="center">图7 跳跃过程</p>
-
-<div align="center">
-<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img8.png" width="710px">
-</div>
-<br>
-<p align="center">图8 跳跃动作控制器输出曲线</p>
+<
