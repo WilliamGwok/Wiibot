@@ -29,7 +29,7 @@
 | Simulation | Webots平台的机器人仿真* | [SIM](https://github.com/WilliamGwok/Wiibot/tree/main/Simulation/webots) |
 | Test_Video | 机器人实车测试图片和视频 | [VIDEO](https://github.com/WilliamGwok/Wiibot/tree/main/Test_Video) |
 
-*本人尝试将机械提供的STL文件直接导入到Webots平台中进行仿真验证，发现导入模型较为复杂，在进行模型简化后仿真世界仍难以正常运行，鉴于该机器人模型较为简单，本人只在仿真平台验证了机器人维持平衡的功能
+*在机械负责同事帮助下，本人尝试将机械提供的STL文件直接导入到Webots平台中进行仿真验证，发现导入模型较为复杂，在进行模型简化后仿真世界仍难以正常运行，鉴于该机器人模型较为简单，本人只在仿真平台验证了机器人维持平衡的功能
 
 
 
