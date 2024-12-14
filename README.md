@@ -5,7 +5,7 @@
 <img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/Robot_Design.png" width="710px">
 </div>
 <br>
-<p align="center">本项目是选修机器人控制课程的课程设计，主要研究平衡车的控制与设计。该项目与先前的RP_Balance项目相似，但采用了不同的腿部构型，并保留了测试数据以支持研究分析。</p>
+<p align="center">本项目是选修机器人控制课程的课程设计，主要研究平衡车的控制与设计。该项目与先前的RP_Balance项目相似，但采用了不同的腿部构型，并保留了更多测试数据以支持研究分析。</p>
 <p align="center">机器人机械部分由RobotPilots实验室的同事ZJH负责，视觉识别部分由ZZ负责。</p>
 
 ## 电控硬件清单
