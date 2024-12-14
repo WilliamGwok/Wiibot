@@ -97,7 +97,7 @@ $$
 控制器参数如下：
 
 $$
-\begin{array}{l}{{K_p=100,\quad K_i=0.5,\quad \text{积分上限}=10,\quad \text{输出上限}=30;}}\\{{\kappa_p=0.4,\quad K_i=0.05,\quad \text{积分上限}=5,\quad \text{输出上限}=8;}}\end{array}
+\begin{array}{l}{{K p=100,\qquad K i=0.5,\qquad I n t e r g r a l_{m a x}=10,\qquad O u t_{m a x}=30;}}\\ {{\mathrm{}}}\\ {{\mathrm{}\kappa p=0.4,\qquad K i=0.05,\qquad I n t e r g r a l_{m a x}=5,\qquad O u t_{m a x}=8;}}\end{array}
 $$
 
 <div align="center">
