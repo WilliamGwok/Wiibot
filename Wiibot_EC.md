@@ -109,13 +109,15 @@ $$
 - 调节时间 $T_{S}$（2%误差下）：0.46s
 
 
-横滚角响应通过单侧上坡动作体现，其横滚角及左右腿腿长变化如图5所示。
+横滚角响应通过单侧上坡动作*体现，其横滚角及左右腿腿长变化如图5所示。
 
 <div align="center">
 <img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img5.png" width="710px">
 </div>
 <br>
 <p align="center">图5 单侧上坡时横滚角与腿长变化</p>
+
+*上坡过程持续2s，坡长约0.8m，坡度9 °
 
 ### 离地检测与跳跃动作
 
