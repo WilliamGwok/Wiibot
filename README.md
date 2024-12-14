@@ -1,3 +1,7 @@
+### English Version Please Click: [ENG_README](https://github.com/WilliamGwok/Wiibot/blob/main/README_ENG.md)
+
+### 日本語翻訳版: [JAP_README](https://github.com/WilliamGwok/Wiibot/blob/main/README_JAP.md)
+
 # Wiibot
 
 ## 前言
