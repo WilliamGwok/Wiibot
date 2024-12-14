@@ -55,9 +55,7 @@ $$
 
 超调量 $\upsigma\%$ 为：  
 
-$$
-$\upsigma\%$ = 17%
-$$
+<p align="center">$\upsigma\%$ = 17%</p>
 
 调节时间 $T_{S}$ 为（ $5\%$ 误差下）：  
 
@@ -84,9 +82,7 @@ $$
 
 超调量 $\upsigma\%$ 为：  
 
-$$
-\upsigma\%=1.6%
-$$
+<p align="center">$\upsigma\%$ = 1.6%</p>
 
 调节时间 $T_{S}$ 为（ $5\%$ 误差下）：  
 
@@ -133,9 +129,7 @@ $$
 
 超调量 $\upsigma\%$ 为：  
 
-$$
-\upsigma\%=6.07%
-$$
+<p align="center">$\upsigma\%$ = 6.07%</p>
 
 调节时间 $T_{S}$ 为（ $\langle2\%$ 误差下）：  
 
