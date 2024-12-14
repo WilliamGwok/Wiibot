@@ -164,7 +164,7 @@ $$
 对于机器人跳跃动作的设计，我们通过给腿长期望输入一个幅值较大的脉冲信号实现。实车跳跃过程如图7 所示，多次测试测得的平均跳跃高度约为 $0.1\mathrm{m}$ 。受限于机器人较大的机体重量，以目前使用的关节电机输出性能难以实现较高的跳跃高度，其跳跃性能有待提高。图8 为机器人在执行两次跳跃动作时腿长控制器双环的输出曲线  
 
 <div align=center>
-<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img7.jpg" width="710px">
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img7.jpeg" width="710px">
 </div>
 <br>
 <p align="center">图7 机器人跳跃过程</p>
