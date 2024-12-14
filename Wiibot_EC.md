@@ -1,429 +1,153 @@
-﻿# 1.系统建模  
+# Wiibot：平衡机器人设计与控制
 
-对于机器人的平衡，纵向以及转向运动，可以将模型简化为三维空间中的类一阶倒立摆模型，即忽略腿长的变化，转向运动由两个驱动轮差速运动控制。  
+## 前言
 
-1.1 模型定义  
+<div align="center">
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/Robot_Design.png" width="710px">
+</div>
+<br>
+<p align="center">本项目是机器人控制课程的课程设计，主题为平衡机器人。该项目与本人之前的 RP_Balance 项目有相似之处，但采用了不同的腿部结构。在项目开发过程中，对机器人性能进行了详细的测试并保留了相关数据。</p>
+<p align="center">机器人机械部分和视觉识别部分分别由本人在 RobotPilots 实验室的同事 ZJH 和 ZZ 负责。</p>
 
-称机器人机体质心到两个驱动轮转轴中心的连线为摆杆，得到如图1 所示平衡车模型。  
+---
 
-该模型的变量与参数定义如表1、表2 所示。  
+## 电控硬件清单
 
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/dd975730967aa1593ec468ff7d7abd08dcb6d7c991c8b14d2961f479eee53b19.jpg)  
-图1 平衡车模型  
+本项目中所使用的主要硬件如下表所示：
 
-表1 平衡车模型变量定义  
+| 名称                        | 技术参数                                                                 | 功能                                      | 数量 |
+|-----------------------------|-------------------------------------------------------------------------|-----------------------------------------|------|
+| Robomaster 开发板 C 型       | 输入电压：8-28 V<br>IMU+电子罗盘：1 个<br>CAN 总线接口：CAN1：2 个；CAN2：2 个<br>UART 接口：2 个<br>SPI 接口：1 个 | 提供高运算能力，保证机器人控制频率达到 1000Hz，支持电机通讯、遥控器信号接收以及视觉系统通讯。 | 1    |
+| mc6mini 遥控器航模接收机     | 通道数量：6<br>频率范围：2401-2478 MHz<br>控制范围：>800 m              | 发送摇杆值，控制机器人平移、旋转及跳跃。    | 1    |
+| MG6012E-i8v3 伺服电机        | 额定电压：48 V<br>空载转速：310 rpm<br>额定扭矩：6 Nm<br>峰值扭矩：16 Nm   | 控制机器人腿长和横滚角。                     | 2    |
+| GM6020 电机                 | 额定电压：24 V<br>空载转速：320 rpm<br>额定扭矩：1.2 Nm<br>峰值扭矩：1.4 Nm | 控制机器人驱动轮，执行平移、旋转及平衡功能。   | 2    |
+| M600 系列 TB47S 智能飞行电池 | 容量：4500 mAh<br>电压：22.2 V                                       | 提供整车电控系统电源。                     | 1    |
+| DC-DC 可调电源模块           | 输入电压：7-32 V<br>输出电压：0-28 V<br>恒流范围：0.2-1.2 A            | 为视觉系统 NUC 提供适配电压与电流。          | 1    |
 
-| 符号 |           含义           |    正方向    | 单位 |
-| :--: | :----------------------: | :----------: | :--: |
-|  q   |    摆杆与竖直方向夹角    | 图示为正方向 | rad  |
-|  j   |        摆杆偏航角        | 图示为正方向 | rad  |
-|  xi  |        驱动轮位移        |  X轴正方向   |  m   |
-|  xb  |         机体位移         |  X轴正方向   |  m   |
-|  Pi  | 驱动轮对摆杆力的竖直分量 |   箭头所示   |  N   |
-|  Pb  |   摆杆受到的竖直方向力   |   箭头所示   |  N   |
-|  Ni  | 驱动轮对摆杆力的水平分量 |   箭头所示   |  N   |
-|  Nb  |   摆杆受到的水平方向力   |   箭头所示   |  N   |
-|  Ti  |      驱动轮输出力矩      |   箭头所示   | N·m  |
+---
 
-表2 平衡车模型参数定义  
+## 文件结构介绍
 
-| 符号 | 单位  |                含义                |
-| :--: | :---: | :--------------------------------: |
-|  D   |   m   |            车体转向直径            |
-|  R   |   m   |             驱动轮半径             |
-|  L   |   m   | 摆杆质心到驱动轮转轴中心的直线长度 |
-|  mw  |  kg   |             驱动轮质量             |
-|  mb  |  kg   |              摆杆质量              |
-|  Ib  | kg∙m2 |    摆杆绕质心关于Z轴的转动惯量     |
-|  Iw  | kg∙m2 |         驱动轮转子转动惯量         |
-|  Iz  | kg∙m2 |     整车质心关于Y轴的转动惯量      |
+项目文件的结构及功能如下表：
 
-1.2 经典力学分析  
+| 文件名/文件夹名     | 功能                                                                                 | 链接                                                                                      |
+|---------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| Code                | 包括 MATLAB 模型建模、控制器设计、增益矩阵拟合、数据绘制，以及实车硬件驱动、通讯协议与整体逻辑控制。 | [CODE](https://github.com/WilliamGwok/Wiibot/tree/main/Code)                            |
+| Display_Files       | 包括项目机械、电控和视觉的课程报告及演示文件。                                        | [DISPLAY](https://github.com/WilliamGwok/Wiibot/tree/main/Disply_Files)                 |
+| Mec                 | 机器人机械设计图纸。                                                                | [MEC](https://github.com/WilliamGwok/Wiibot/tree/main/Mec/balance)                      |
+| Simulation          | Webots 平台的机器人仿真文件。                                                       | [SIM](https://github.com/WilliamGwok/Wiibot/tree/main/Simulation/webots)                |
+| Test_Video          | 包括实车测试的图片与视频。                                                          | [VIDEO](https://github.com/WilliamGwok/Wiibot/tree/main/Test_Video)                     |
 
-对驱动轮，有：  
+---
 
-$$
-m_{w}\ddot{x}_{\iota}=N_{f i}-N_{i}
-$$
+## 实车测试与数据分析
 
-$$
-I_{w}\frac{\ddot{x}_{\iota}}{R}=T_{i}-N_{f i}R
-$$
+### 位移与偏航角静态响应分析
 
-对摆杆，有：  
+#### 位移阶跃响应
 
-$$
-m_{b}\ddot{x_{b}}=N_{f l}+N_{f r}
-$$
+在静止状态下，输入幅值为 0.4 的位移阶跃信号，测得机器人位移响应及俯仰角变化如 **图 1** 所示。
 
-$$
-m_{b}\ddot{y_{b}}=P_{r}+P_{l}-m_{b}g
-$$
+<div align="center">
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img1.png" width="710px">
+</div>
+<br>
+<p align="center">**图 1：** 位移阶跃响应及俯仰角变化</p>
 
-$$
-I_{b}\ddot{\theta}_{b}=(P_{r}+P_{l})L\sin\theta_{b}-(N_{r}+N_{l})L\cos\theta_{b}-(T_{r}+T_{l})
-$$
+关键性能指标如下：
 
-对整车，有：  
+- 峰值时间 \( T_P \)：  
+  \[
+  T_P = 1.731 \, \text{s}
+  \]
 
-$$
-I_{z}\ddot{\phi}={\frac{D}{2}}\left(N_{l}-N_{r}\right)
-$$
+- 超调量 \( \sigma\% \)：  
+  \[
+  \sigma\% = 17\%
+  \]
 
-其中：  
+- 调节时间 \( T_S \)（在 \( 5\% \) 误差范围内）：  
+  \[
+  T_S = 2.542 \, \text{s}
+  \]
 
-$$
-x_{b}=x+L\sin\theta_{b}
-$$
+在该过程中，最大俯仰角约为 \( 0.219 \, \text{rad} \)（即 12.549°）。
 
-$$
-y_{b}=L\cos\theta_{b}
-$$
+#### 偏航角阶跃响应
 
-1.3 状态空间模型  
+在静止状态下，输入幅值为 1.579 rad（约 90°）的偏航角阶跃信号，测得偏航角响应及俯仰角变化如 **图 2** 所示。
 
-定义非线性模型：  
+<div align="center">
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img2.png" width="710px">
+</div>
+<br>
+<p align="center">**图 2：** 偏航角阶跃响应及俯仰角变化</p>
 
-$$
-{\dot{x}}=f(x,T_{l},T_{r})
-$$
+关键性能指标如下：
 
-利用MATLAB 符号运算工具，联立式（1）到式（8），通过函数solve 对方程组消去中间变量，最终得到非线性表达式（9），式（10），和式（11）  
+- 峰值时间 \( T_P \)：  
+  \[
+  T_P = 0.477 \, \text{s}
+  \]
 
-$$
-2m_{w}\ddot{x}+m_{b}\left(\ddot{x}-L\left(s i n(\theta_{b})\:\dot{\theta_{b}}^{2}-\dot{\theta_{b}}\:c o s(\theta_{b})\right)\right)-\frac{T_{l}}{R}-\frac{T_{r}}{R}+\frac{2I_{w}\ddot{x}}{R^{2}}=0
-$$
+- 超调量 \( \sigma\% \)：  
+  \[
+  \sigma\% = 1.6\%
+  \]
 
-$$
-T_{l}+T_{r}+I_{b}\ddot{\theta}_{b}-L\,s i n(\theta_{b})\left(g m_{b}-L m_{b}\left(c o s(\theta_{b})\,\dot{\theta}_{b}^{\;2}+\ddot{\theta}_{b}\,s i n(\theta_{b})\right)\right)-2L m_{w}\ddot{x}\,c o s(\theta_{b})
-$$
+- 调节时间 \( T_S \)（在 \( 5\% \) 误差范围内）：  
+  \[
+  T_S = 0.385 \, \text{s}
+  \]
 
-$$
-+\,\frac{L T_{l}\;c o s(\theta_{b})}{R}+\frac{L T_{r}\;*\,c o s(\theta_{b})}{R}-\frac{2I_{w}L\ddot{x}\;c o s(\theta_{b})}{R^{2}}=0
-$$
+---
 
-$$
-D T_{l}R=m_{w}\ddot{\phi_{b}}D^{2}R^{2}+I_{w}\ddot{\phi_{b}}D^{2}+T_{r}D R+2I_{z}\ddot{\phi_{b}}R^{2}
-$$
+### 腿长与横滚角响应分析
 
-定义状态向量 $\mathbf{X}$ 与控制向量 $\mathrm{_u}$ 分别为：  
+#### 腿长控制
 
-$$
-x=\left[\!\!{\begin{array}{c}{x}\\ {{\dot{x}}}\\ {\theta_{b}}\\ {\dot{\theta}_{b}}\\ {\phi}\\ {{\dot{\phi}}}\end{array}}\right],u=\left[\!\!{\begin{array}{c}{T_{l}}\\ {T_{r}}\end{array}}\right]
-$$
+采用双环 PID 控制器实现机器人腿长控制。速度内环和位置外环的响应曲线如 **图 3** 所示。
 
-根据式状态向量 $\mathbf{X}$ 与控制向量 $\mathrm{_u}$ ，求非线性模型在平衡点处的雅可比矩阵并对其线性化，即将 $\theta\!=0$ ，则sin $\theta=\theta,\cos\theta=1$ 代入式（9）到（11）后，求：  
+<div align="center">
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img3.png" width="710px">
+</div>
+<br>
+<p align="center">**图 3：** 腿长控制器内外环响应曲线</p>
 
-$$
-A={\frac{\partial f}{\partial x}}(x,u),\quad B={\frac{\partial f}{\partial u}}(x,u)
-$$
+关键性能指标如下：
 
-其中， $\mathrm{~\boldmath~X~},\mathrm{~\boldmath~u~}$ 是系统平衡点，即方程 $f(x,\ u)=0\,$ 的解：  
+- 峰值时间 \( T_P \)：  
+  \[
+  T_P = 0.29 \, \text{s}
+  \]
 
-$$
-x=\left[\!\!{\begin{array}{c}{x_{b}}\\ {0}\\ {0}\\ {0}\\ {\phi_{b}}\\ {0}\end{array}}\right],u=\left[\!\!{\begin{array}{c}{0}\\ {0}\\ {0}\end{array}}\right]
-$$
+- 超调量 \( \sigma\% \)：  
+  \[
+  \sigma\% = 6.07\%
+  \]
 
-最终求得的状态方程为：  
+---
 
-$$
-{\dot{x}}={\left[\begin{array}{l l l l l l}{0}&{1}&{0}&{0}&{0}&{0}\\ {0}&{0}&{A_{1}}&{A_{2}}&{0}&{0}\\ {0}&{0}&{0}&{1}&{0}&{0}\\ {0}&{0}&{A_{3}}&{A_{4}}&{0}&{0}\\ {0}&{0}&{0}&{0}&{0}&{1}\\ {0}&{0}&{0}&{0}&{0}&{0}\end{array}\right]}x+{\left[\begin{array}{l l}{0}&{0}\\ {B_{1}}&{B_{2}}\\ {0}&{0}\\ {B_{3}}&{B_{4}}\\ {0}&{0}\\ {B_{5}}&{B_{6}}\end{array}\right]}u
-$$
+### 离地检测与跳跃动作
 
-由于表达式略为复杂，此处用符号代替，具体内容可通过运行MATLAB 代码在工作空间中查看。  
+在跳跃过程中，通过关节电机输出扭矩实现有效的离地检测。离地与落地过程中测得的关节扭矩如 **图 6** 所示。
 
-所有变量均可通过平衡车上各个传感器（如驱动轮编码器，IMU 模块等）直接测量或通过数据融合解算得到，故可得系统输出 $y=I_{6}x$ ，其中 $I_{6}$ 为单位阵。  
+<div align="center">
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img6.png" width="710px">
+</div>
+<br>
+<p align="center">**图 6：** 离地与落地过程中的关节电机扭矩输出</p>
 
-代入平衡车实车模型参数后可以得到该状态空间模型的状态矩阵A 和控制矩阵B，在MATLAB 中使用rank 函数求得其可控矩阵满秩，系统可控。系统输出矩阵C 为单位矩阵，系统可观。  
+为实现跳跃，给腿长控制器输入一个大幅值脉冲信号，平均跳跃高度约为 \( 0.1 \, \text{m} \)。实车跳跃过程如 **图 7** 所示，对应控制器的输出曲线如 **图 8** 所示。
 
-# 1.4 仿真验证  
+<div align="center">
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img7.jpeg" width="710px">
+</div>
+<p align="center">**图 7：** 机器人跳跃过程</p>
 
-将Solidwork 中搭建的模型分模块导入到仿真软件Webots 中，通过对关节电机设置其允许位移为0，得到一个定腿长的平衡车模型。  
+<div align="center">
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img8.png" width="710px">
+</div>
+<p align="center">**图 8：** 跳跃动作中双环控制器的输出曲线</p>
 
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/47516a4bc0521579436e68b382e87945e9e5c00580f8a921a8b489d314718c85.jpg)  
-图2 仿真环境中的整车模型  
-
-通过使用MATLAB 中的lqr 函数计算得到反馈增益矩阵K。因为在仿真中主要目的是验证模型建立是否正确，用于计算K 矩阵的Q 和R 权矩阵的数值选取只关注机器人俯仰角的稳定。经检验，得到模型正确。  
-
-2 控制器设计  
-
-基于本项目的平衡车构型，除了机器人的平移、转向和保持平衡的控制外，还需要控制平衡车双腿的长度及其横滚角。  
-
-2.1  LQR 控制器  
-
-基于上述求得的状态空间方程，通过一个LQR 控制器可以较好地对机器人平移、旋转以及机体俯仰角进行控制。  
-
-设计控制律为系统状态的线性组合：  
-
-$$
-u=-K x=-\left[{\cal K}_{11}\quad{\cal K}_{12}\quad{\cal K}_{13}\quad{\cal K}_{14}\quad{\cal K}_{15}\quad{\cal K}_{16}\right]\left[{\dot{\theta}}_{b}\right]_{\scriptstyle\hat{b}}^{\scriptstyle\hat{}\hat{}}
-$$
-
-通过线性二次型调节器计算反馈矩阵，定义代价函数为  
-
-$$
-J=\int_{0}^{\infty}(x^{T}Q x+u^{T}R u)d t
-$$
-
-其中：  
-
-$x$ 是系统状态向量；  
-
-$u$ 是控制输入向量；  
-$Q$ 是对状态变量的加权矩阵，通常是半正定矩阵，反映了对状态偏离的惩罚；  
-$R$ 是对控制输入的加权矩阵，通常是正定矩阵，反映了对控制能量的惩罚。  
-
-# 最优控制律：  
-
-为了使代价函数𝐽达到最小，控制输入 $u$ 应满足以下关系：  
-
-$$
-u=-R^{-1}B^{T}P x
-$$
-
-其中：  
-
-$P$ 是代数 Riccati 方程的解。  
-
-# 反馈增益矩阵：  
-
-通过上述控制律，反馈增益矩阵 $K$ 可以表示为：  
-
-$$
-K=R^{-1}B^{T}P
-$$
-
-代数 Riccati 方程:  
-
-矩阵𝑃需要满足以下代数 Riccati 方程：  
-
-$$
-A^{T}P+P A-P B R^{-1}B^{T}P+Q=0
-$$
-
-其中：  
-
-𝐴 和 $B$ 是系统状态空间方程中的系统矩阵和输入矩阵。  
-
-为了可以控制平衡车的移动和转向，还需要实现对位移和偏航角两个状态变量的轨迹跟踪。在系统输入中加入参考输入，即状态期望：  
-
-$$
-u=-K(x-x_{d})
-$$
-
-其中 $x_{d}$ 为：  
-
-$$
-x_{d}=\left[\begin{array}{l}{x_{d}}\\ {0}\\ {0}\\ {0}\\ {\phi_{d}}\\ {0}\end{array}\right]
-$$
-
-$x_{d}$ 为期望位移， $\phi_{d}$ 为期望偏航角，两者均由其期望一阶微分量对时间积分得到。  
-
-# 2.2 双环PID 控制器  
-
-基于该项目平衡车的四连杆腿部构型，可以通过关节电机的输出来调整机器人的腿部长度；同时，为了让机器人在进行视觉识别时机体保持横滚角水平，还需要根据机器人实时的横滚角值来调整两边腿的长度。  
-
-为了让机器人的腿长控制有更快的响应速度和鲁棒性，引入两个双环PID 控制器分别对机器人的腿长和横滚角进行控制，最后并行输出到电机控制电流值。  
-
-腿长的控制框图如图3 所示：  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/ac93fa1712776b9dd083bd12aded7e30fed10d9dc3d83f7a46da52ba35b6b172.jpg)  
-图3 机器人腿长双环PID 控制框图  
-
-横滚角的控制框图如图4 所示：  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/043c72523ade447348210e8d093f58929149c304d6d1a131098a9c7b4c17e931.jpg)  
-图4 机器人横滚角双环PID 控制框图  
-
-最终发送的电机电流值为两个控制器的输出之和。  
-
-# 2.3 增益矩阵K 的参数拟合  
-
-在建模阶段，我们将倒立摆的杆长假设为定值，但实际上，该值会随着机器人腿长的变化而改变，其对应的模型也会有差异。由于求得解析解较为困难，我们将机器人腿长作为拟合的自变量，对增益矩阵K 进行四阶多项式拟合。  
-
-由于实车环境下我们无法直接测量机器人实时腿长，需要由一些角度关系推算得到。将模型简化至如图5 所示。  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/05eda22b525d961c101b558a0e1314b227e04a4b624397f152a792649c01a1ab.jpg)  
-图5 腿部四连杆结构简化模型  
-
-其中，三角形边a、边 $\flat$ 可以通过在机械图纸中测量得到，角A 可以由电机编码器求得，边c 则是期望求得的机器人腿长。由余弦定理得式（13）：  
-
-$$
-a^{2}-b^{2}-c^{2}+2b c\cos(A)=0
-$$
-
-通过MATLAB 的solve 函数求解（排除负数解）得式（14）：  
-
-$$
-c=b\cos(A)+{\sqrt{a^{2}+b^{2}\cos^{2}(A)-b^{2}}}
-$$
-
-经测量，实车边 $b=0.11291m$ ，边 $a=0.11461m$ ，将数据代入并由0 至90 度遍历角A可以得到角A 与腿长的关系曲线如图6 所示。  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/669adb1b447b32447e405117e2308a950643ac20c0fabf9f59e470d72e5e1c90.jpg)  
-图6 机器人腿长与角度A 的关系曲线  
-
-在MATLAB 中遍历腿长，计算不同腿长值下的增益矩阵K，并对K 矩阵每个元素进行关于角度A 的多项式拟合，求得拟合系数并存到EXCEL 表格中，以便将它们添加进实车代码中进行增益矩阵的实时计算。  
-
-拟合公式如式（15）：  
-
-$$
-y=a_{4}x^{4}+a_{3}x^{3}+a_{2}x^{2}+a_{1}x+a_{0}
-$$
-
-其中y 对应K 矩阵的各个元素， $\mathbf{X}$ 为测得角度A 的值。  
-
-最终的拟合效果如图7 所示，蓝色曲线为各个角度A 值下的实际K 矩阵值，紫色曲线为拟合值。  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/86e561da8490cc5fdc8d63be3399c984233fa4032aa663b1219e93423c581ca2.jpg)  
-图7 增益矩阵K 的实际曲线与拟合曲线对比  
-
-通过对比，可知拟合效果满足实车控制需求。  
-
-3. 实车硬件选型及代码框架介绍  
-
-基于项目需求及材料储备，本次选取的电控硬件型号如表3 所示。  
-
-表3 平衡车实车主要电控硬件表  
-
-| 名称                                 | 部分技术参数                         | 功能                                               | 数量 |
-| ------------------------------------ | ------------------------------------ | -------------------------------------------------- | ---- |
-| Robomaster 开发板 C 型               | 输入电压: 8-28 V                     | 搭载的芯片提供足够高的运算能力，                   | 1    |
-|                                      | IMU+E-compass: 1 个                  | 让机器人的控制频率保持 1000Hz。                    |      |
-|                                      | CAN 总线接口: CAN1: 2 个；CAN2: 2 个 | 电机通讯、遥控器信息接收以及视觉电机通讯。         |      |
-|                                      | UART 接口: 2 个                      |                                                    |      |
-|                                      | SPI 接口: 1 个                       |                                                    |      |
-| 遥控 mc6cmini 遥控器航模接收器接收机 | 通道数量: 6                          | 发送摇杆信号，发送机器人平移、旋转、跳跃等指令。   | 1    |
-|                                      | 频率范围: 2401-2478 Mhz              |                                                    |      |
-|                                      | 控制范围: >800 m                     |                                                    |      |
-| 领控 MG6012E-i8v3 舵机电机           | 额定电压: 48 V                       | 机器人关节电机，控制机器人的腿长以及机体横滚角。   | 2    |
-|                                      | 空载转速: 310 rpm                    |                                                    |      |
-|                                      | 额定扭矩: 6 Nm                       |                                                    |      |
-|                                      | 峰值扭矩: 16 Nm                      |                                                    |      |
-| Robomaster GM6020 电机               | 额定电压: 24 V                       | 机器人驱动轮电机，执行平移、旋转、维持平衡等动作。 | 2    |
-|                                      | 空载转速: 320 rpm                    |                                                    |      |
-|                                      | 额定扭矩: 1.2 Nm                     |                                                    |      |
-|                                      | 峰值扭矩: 1.4 Nm                     |                                                    |      |
-| 经纬 M600 系列 TB47S 智能飞行电池    | 容量: 4500 mAh                       | 整套机器人电控系统的供电。                         | 1    |
-|                                      | 电压: 22.2 V                         |                                                    |      |
-| DC-DC 可调电源模块                   | 输入电压: 7-32 V                     | 为视觉电脑提供适配的工作电压及电流。               | 1    |
-|                                      | 输出电压: 0.8-28 V                   |                                                    |      |
-|                                      | 恒流范围: 0.2-12 A                   |                                                    |      |
-
-4. 实车测试结果与数据分析  
-
-对整车多个控制器的控制效果进行分析，除了腿长控制器和横滚角控制器的测试，所有数据测量均在固定腿长的实车状态下测得，对应的增益矩阵K 如下所示。数据均在J-Scope 中测得，在MATLAB 中绘制。  
-
-$$
-K={\left[\begin{array}{l l l l l l}{-3.693}&{-3.287}&{-8.559}&{-0.591}&{3.693}&{0.369}\\ {-3.693}&{-3.287}&{-8.559}&{-0.591}&{-3.693}&{-0.369}\end{array}\right]}
-$$
-
-4.1 平衡车位移、偏航角静态响应及俯仰角变化  
-
-在静止状态下，给机器人位移期望输入幅值为0.4的阶跃信号，其位移响应及俯仰角变化如图8 所示。  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/54107b8cca89b7c12431ea5929c5db6184e299a43f6ad25efb9ad7d3a850ea85.jpg)  
-图8 机器人位移阶跃响应及其过程俯仰角变化  
-
-经测量，位移响应的峰值时间 $T_{P}$ 为：  
-
-$$
-T_{P}=1.731s
-$$
-
-超调量 $\upsigma\%$ 为：  
-
-$$
-\upsigma\%={\frac{A_{\mathrm{max}}-A_{\mathrm{steady}}}{A_{\mathrm{steady}}}}\times100\%={\frac{0.468-0.400}{0.4}}\times100\%=17\%
-$$
-
-调节时间 $T_{S}$ 为（ $5\%$ 误差下）：  
-
-$$
-T_{S}=2.542s
-$$
-
-在位移状态量的轨迹跟踪过程中，测得机器人机体最大俯仰角为0.219 𝑟𝑎𝑑，即约12.549度。  
-
-在静止状态下，给机器人偏航角期望输入幅值为1.579（约90 度）的阶跃信号，其偏航角响应及俯仰角变化如图9 所示。  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/71e8f00b15ee4db22518fd839e948e641c10cb11967161e3dd7f54126938ecc2.jpg)  
-图9 机器人偏航角阶跃响应及其过程俯仰角变化  
-
-经测量，位移响应的峰值时间 $T_{P}$ 为：  
-
-$$
-T_{P}=0.477s
-$$
-
-超调量 $\upsigma\%$ 为：  
-
-$$
-\upsigma\%={\frac{A_{\mathrm{max}}-A_{\mathrm{steady}}}{A_{\mathrm{steady}}}}\times100\%={\frac{1.585-1.560}{1.560}}\times100\%=1.6\%
-$$
-
-调节时间 $T_{S}$ 为（ $5\%$ 误差下）：  
-
-$$
-T_{S}=0.385s
-$$
-
-在偏航角状态量的轨迹跟踪过程中，测得机器人机体俯仰角在转动过程中会在0.104 𝑟𝑎𝑑内产生小幅度震荡。  
-
-综上，机器人位移响应速度较慢，考虑到测量过程中没有加入机器人速度状态的轨迹跟踪，且响应过程中机体倾角较小，实际响应效果可以满足项目需求。偏航角的响应十分迅速，且超调量小，对机体的俯仰角影响十分有限，也能满足项目需求。  
-
-4.2 平衡车腿长及机体横滚角响应  
-
-对于机器人腿长的控制，我们采用了双环PID 控制器。对腿长目标值输入幅值为0.3 的阶跃信号。其位置外环及速度内环的响应曲线如图10 所示。  
-
-其中，该PID 控制器的内外环参数如下所示：  
-
-$$
-\begin{array}{l}{{K p=100,\qquad K i=0.5,\qquad I n t e r g r a l_{m a x}=10,\qquad O u t_{m a x}=30;}}\\ {{\mathrm{}}}\\ {{\mathrm{}\kappa p=0.4,\qquad K i=0.05,\qquad I n t e r g r a l_{m a x}=5,\qquad O u t_{m a x}=8;}}\end{array}
-$$
-
-基于关节电机的扭矩参数，额定扭矩为 $6N\cdot m$ ，峰值扭矩为 $16N\cdot m$ ，设置常态下速度环的最大速出为8，即 $8N\cdot m$ 。  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/80773173e3f0fd6e7d1a5451362b02dcdd83d47a53acc7943b333dc5b4d3dcec.jpg)  
-图10 机器人腿长双环控制器的内外环响应曲线  
-
-由图10 可以看到，速度响应在初始阶段有一段锯齿波形，这是由于机械的腿部涉及有一些干涉导致的。再次输入阶跃信号，其幅值为机器人的最高腿长，其响应曲线如图11 所示。  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/d8ef35964f8b9798e78e693970ca8bb698c81f8906cd3a0f4c360cfde0f3449d.jpg)  
-图11 机器人腿长最大阶跃响应曲线  
-
-经测量，腿长响应的峰值时间 $T_{P}$ 为：  
-
-$$
-T_{P}=0.29s
-$$
-
-超调量 $\upsigma\%$ 为：  
-
-$$
-\upsigma\%={\frac{A_{\mathrm{max}}-A_{\mathrm{steady}}}{A_{\mathrm{steady}}}}\times100\%={\frac{0.366-0.350}{0.350}}\times100\%=6.07\%
-$$
-
-调节时间 $T_{S}$ 为（ $\langle2\%$ 误差下）：  
-
-关于机器人横滚角的响应，我们通过让机器人完成单侧上坡的动作来体现。其上坡过程中的横滚角变化曲线及左右腿腿长变化曲线如图12 所示。  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/8327f2137153b726f209d028c30d01d6f79801d68f35b46bf356de85276e43c0.jpg)  
-图12 机器人单侧上坡时测得的机体横滚角和两腿长度  
-
-由图12 可以得到，在单侧上坡过程中，通过横滚角PID 控制器控制双边腿长发生改变，来使得机体始终保持横滚角为0。由测得数据可知，该过程中机器人横滚角的变化幅值为0到0.07 rad，该横滚角响应性能满足项目需求。  
-
-# 4.3 离地检测与跳跃动作  
-
-在机器人跳跃过程中，机器人整体会完全离开地面，此时其模型与在地面时有差异，这将会导致系统发散。故高效的离地检测与离地处理十分重要。理论上，严谨的离地处理需要通过测得的关节输出扭矩来解算机器人实时受到的支持力，这将需要一定的推导计算。为了项目进度，我们将该流程简化，直接用关节输出扭矩来判断机器人是否离地。图12 为机器人两次离地落地的关节扭矩输出，我们选取了离地阈值为 $0.5\mathrm{Nm}$ ，经多次测试，该方式检测离地较为可靠与高效。关于离地后的处理，我们将驱动轮的输出置零，并将位移和偏航角两个状态变量置零，以使得机器人在落地后保持初始状态。  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/3ecd81322426a28fc4bcd4a9a9828f4bc309972f0d68c43711dfb00f0a8227ee.jpg)  
-图12 机器人两次离地落地时关节电机输出扭矩曲线  
-
-对于机器人跳跃动作的设计，我们通过给腿长期望输入一个幅值较大的脉冲信号实现。实车跳跃过程如图13 所示，多次测试测得的平均跳跃高度约为 $0.1\mathrm{m}$ 。受限于机器人较大的机体重量，以目前使用的关节电机输出性能难以实现较高的跳跃高度，其跳跃性能有待提高。图14 为机器人在执行两次跳跃动作时腿长控制器双环的输出曲线  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/a318837f8eb4a6339d97c9d9c0965abcc451257283143a51e1b4843d154e19c5.jpg)  
-图13 机器人跳跃过程  
-
-![](E:/Files/大四上/Wiibot-main/Disply_Files/Electronic_control_GJW/In/Wiibot_EC/images/20733493ac7b555e58ec88c588d805ea4c742cb5b36e3ed7631d2d22fa1e19f9.jpg)  
-图14 机器人两次跳跃动作过程内外环控制器的输出曲线  
+---
