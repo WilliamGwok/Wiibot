@@ -37,11 +37,14 @@ $$
 K={\left[\begin{array}{l l l l l l}{-3.693}&{-3.287}&{-8.559}&{-0.591}&{3.693}&{0.369; }\\ {-3.693}&{-3.287}&{-8.559}&{-0.591}&{-3.693}&{-0.369}\end{array}\right]}
 $$
 
-4.1 平衡车位移、偏航角静态响应及俯仰角变化  
+### 平衡车位移、偏航角静态响应及俯仰角变化  
 
 在静止状态下，给机器人位移期望输入幅值为0.4的阶跃信号，其位移响应及俯仰角变化如图8 所示。  
 
-![](images/54107b8cca89b7c12431ea5929c5db6184e299a43f6ad25efb9ad7d3a850ea85.jpg)  
+<div align=center>
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img1.png" width="710px">
+</div>
+<br>
 图8 机器人位移阶跃响应及其过程俯仰角变化  
 
 经测量，位移响应的峰值时间 $T_{P}$ 为：  
@@ -53,7 +56,7 @@ $$
 超调量 $\upsigma\%$ 为：  
 
 $$
-\upsigma\%={\frac{A_{\mathrm{max}}-A_{\mathrm{steady}}}{A_{\mathrm{steady}}}}\times100\%={\frac{0.468-0.400}{0.4}}\times100\%=17\%
+\upsigma\%=17\%
 $$
 
 调节时间 $T_{S}$ 为（ $5\%$ 误差下）：  
@@ -66,7 +69,10 @@ $$
 
 在静止状态下，给机器人偏航角期望输入幅值为1.579（约90 度）的阶跃信号，其偏航角响应及俯仰角变化如图9 所示。  
 
-![](images/71e8f00b15ee4db22518fd839e948e641c10cb11967161e3dd7f54126938ecc2.jpg)  
+<div align=center>
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img2.png" width="710px">
+</div>
+<br>
 图9 机器人偏航角阶跃响应及其过程俯仰角变化  
 
 经测量，位移响应的峰值时间 $T_{P}$ 为：  
@@ -78,7 +84,7 @@ $$
 超调量 $\upsigma\%$ 为：  
 
 $$
-\upsigma\%={\frac{A_{\mathrm{max}}-A_{\mathrm{steady}}}{A_{\mathrm{steady}}}}\times100\%={\frac{1.585-1.560}{1.560}}\times100\%=1.6\%
+\upsigma\%=1.6\%
 $$
 
 调节时间 $T_{S}$ 为（ $5\%$ 误差下）：  
@@ -91,7 +97,7 @@ $$
 
 综上，机器人位移响应速度较慢，考虑到测量过程中没有加入机器人速度状态的轨迹跟踪，且响应过程中机体倾角较小，实际响应效果可以满足项目需求。偏航角的响应十分迅速，且超调量小，对机体的俯仰角影响十分有限，也能满足项目需求。  
 
-4.2 平衡车腿长及机体横滚角响应  
+### 平衡车腿长及机体横滚角响应  
 
 对于机器人腿长的控制，我们采用了双环PID 控制器。对腿长目标值输入幅值为0.3 的阶跃信号。其位置外环及速度内环的响应曲线如图10 所示。  
 
@@ -103,12 +109,18 @@ $$
 
 基于关节电机的扭矩参数，额定扭矩为 $6N\cdot m$ ，峰值扭矩为 $16N\cdot m$ ，设置常态下速度环的最大速出为8，即 $8N\cdot m$ 。  
 
-![](images/80773173e3f0fd6e7d1a5451362b02dcdd83d47a53acc7943b333dc5b4d3dcec.jpg)  
+<div align=center>
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img3.png" width="710px">
+</div>
+<br>
 图10 机器人腿长双环控制器的内外环响应曲线  
 
 由图10 可以看到，速度响应在初始阶段有一段锯齿波形，这是由于机械的腿部涉及有一些干涉导致的。再次输入阶跃信号，其幅值为机器人的最高腿长，其响应曲线如图11 所示。  
 
-![](images/d8ef35964f8b9798e78e693970ca8bb698c81f8906cd3a0f4c360cfde0f3449d.jpg)  
+<div align=center>
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/ing4.png" width="710px">
+</div>
+<br>
 图11 机器人腿长最大阶跃响应曲线  
 
 经测量，腿长响应的峰值时间 $T_{P}$ 为：  
@@ -120,31 +132,42 @@ $$
 超调量 $\upsigma\%$ 为：  
 
 $$
-\upsigma\%={\frac{A_{\mathrm{max}}-A_{\mathrm{steady}}}{A_{\mathrm{steady}}}}\times100\%={\frac{0.366-0.350}{0.350}}\times100\%=6.07\%
+\upsigma\%=6.07\%
 $$
 
 调节时间 $T_{S}$ 为（ $\langle2\%$ 误差下）：  
 
 关于机器人横滚角的响应，我们通过让机器人完成单侧上坡的动作来体现。其上坡过程中的横滚角变化曲线及左右腿腿长变化曲线如图12 所示。  
 
-![](images/8327f2137153b726f209d028c30d01d6f79801d68f35b46bf356de85276e43c0.jpg)  
+<div align=center>
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img5.png" width="710px">
+</div>
+<br>
 图12 机器人单侧上坡时测得的机体横滚角和两腿长度  
 
 由图12 可以得到，在单侧上坡过程中，通过横滚角PID 控制器控制双边腿长发生改变，来使得机体始终保持横滚角为0。由测得数据可知，该过程中机器人横滚角的变化幅值为0到0.07 rad，该横滚角响应性能满足项目需求。  
 
-# 4.3 离地检测与跳跃动作  
+### 离地检测与跳跃动作  
 
 在机器人跳跃过程中，机器人整体会完全离开地面，此时其模型与在地面时有差异，这将会导致系统发散。故高效的离地检测与离地处理十分重要。理论上，严谨的离地处理需要通过测得的关节输出扭矩来解算机器人实时受到的支持力，这将需要一定的推导计算。为了项目进度，我们将该流程简化，直接用关节输出扭矩来判断机器人是否离地。图12 为机器人两次离地落地的关节扭矩输出，我们选取了离地阈值为 $0.5\mathrm{Nm}$ ，经多次测试，该方式检测离地较为可靠与高效。关于离地后的处理，我们将驱动轮的输出置零，并将位移和偏航角两个状态变量置零，以使得机器人在落地后保持初始状态。  
 
-![](images/3ecd81322426a28fc4bcd4a9a9828f4bc309972f0d68c43711dfb00f0a8227ee.jpg)  
+<div align=center>
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img6.png" width="710px">
+</div>
+<br>
 图12 机器人两次离地落地时关节电机输出扭矩曲线  
 
 对于机器人跳跃动作的设计，我们通过给腿长期望输入一个幅值较大的脉冲信号实现。实车跳跃过程如图13 所示，多次测试测得的平均跳跃高度约为 $0.1\mathrm{m}$ 。受限于机器人较大的机体重量，以目前使用的关节电机输出性能难以实现较高的跳跃高度，其跳跃性能有待提高。图14 为机器人在执行两次跳跃动作时腿长控制器双环的输出曲线  
 
-![](images/a318837f8eb4a6339d97c9d9c0965abcc451257283143a51e1b4843d154e19c5.jpg)  
+<div align=center>
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img7.jpg" width="710px">
+</div>
+<br>
 图13 机器人跳跃过程  
-
-![](images/20733493ac7b555e58ec88c588d805ea4c742cb5b36e3ed7631d2d22fa1e19f9.jpg)  
+<div align=center>
+<img src="https://github.com/WilliamGwok/Wiibot/blob/main/Disply_Files/Figure/img8.png" width="710px">
+</div>
+<br>
 图14 机器人两次跳跃动作过程内外环控制器的输出曲线  
 
 
